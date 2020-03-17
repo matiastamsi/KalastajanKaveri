@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('catches_create') }}">
+  <input type="text" name="specie"/><br>
+  <input type="checkbox" id="bait1" name="lure_or_fly" value="fly" >
+  <label for="bait1"> Fly</label><br>
+  <input type="checkbox" id="bait2" name="lure_or_fly" value="lure">
+  <label for="bait2"> Lure</label><br>
+  <input type="number" name="length" step="0.1"/><br>
+  <input type="number" name="weight" step="0.1"/><br>
+  <input type="number" name="spot_id"/><br>
+  <input type="number" name="user_id"/><br>
+  <input type="number" name="description"/><br>
+  <input type="checkbox" id="option1" name="private_or_public" value="private">
+  <label for="option1"> Private publication</label><br>
+  <input type="checkbox" id="option2" name="private_or_public" value="public">
+  <label for="option2"> Public publication</label><br>
+  <input type="submit" value="Add a new task"/>
+</form>
+{% endblock %}
