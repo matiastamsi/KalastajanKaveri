@@ -6,6 +6,10 @@
   </head>
 
   <body>
+      <ul>
+	<li><a href="{{ url_for('catches_index') }}">List catches</a></li>
+	<li><a href="{{ url_for('catches_form') }}">Add a catch</a></li>
+      </ul>
     {% block body %}
       <p>
         Content.

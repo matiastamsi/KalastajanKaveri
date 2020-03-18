@@ -3,13 +3,14 @@
 {% block body %}
   <table>
     <tr>
-      <th>Specie</th>
-      <th>Lure or fly</th>
-      <th>Length (cm)</th>
-      <th>Weight (kg)</th>
-      <th>Spot</th>
-      <th>User</th>
-      <th>Description</th>
+      <th> Specie </th>
+      <th> Lure or fly </th>
+      <th> Length (cm) </th>
+      <th> Weight (kg) </th>
+      <th> Spot </th>
+      <th> User </th>
+      <th> Description </th>
+      <th></th>
     </tr>
     {% for catch in catches %}
     <tr>
@@ -20,6 +21,11 @@
       <td>{{ catch.spot_id }}</td>
       <td>{{ catch.user_id }}</td>
       <td>{{ catch.description }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('catches_change', catch_id = catch.id) }}">
+          <input type="submit" value="Change"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>
