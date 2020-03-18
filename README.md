@@ -22,9 +22,9 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
   
 [Tietokantakaavio](https://dbdiagram.io/d/5e68b12c4495b02c3b8817a8)
 
-![alt text](https://github.com/matiastamsi/KalastajanKaveri/images/database.png "Picture of database Title Text")
+![Kuva tietokantakaaviosta](https://github.com/matiastamsi/KalastajanKaveri/blob/master/images/database.png)
 
-[User stories](https://github.com/matiastamsi/KalastajanKaveri/dokumentation/User_stories.txt)
+[User stories](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/User_stories.txt)
 
 [Sovellus Herokussa](https://quiet-stream-39899.herokuapp.com/)
 
