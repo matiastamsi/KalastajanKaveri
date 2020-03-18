@@ -1,0 +1,9 @@
+User Stories
+
+Olen Kalle ja haluan pitää kirjaa ennätyssaaleistani. Näin voin myös vertailla ennätyksiäni toisten saaleihin.
+
+Olen Mirja ja haluan pitää kirjaa saaleista eri kalapaikoissa. Löydän tällä tavalla parhaan kalapaikan. Onneksi voin myös nähdä mitä ja mistä muut kalastajat ovat saaneet.
+
+Olen Seppo, kalastuskerhon johtaja. Käytämme sovellusta virallisena alustana järjestämässänne kalastuskilpailussa.
+
+Olen Tarja, Kuntalan kunnan virkailija, jonka tehtävänä on selvittää, minne Kuntalan joen koskiin pitäisi ensi sijaisesti istuttaa lisää kaloja. Sovellus auttaa minua tässä.
