@@ -1,26 +1,89 @@
-{% extends "layout.html" %}
-
 {% block body %}
 <form method="POST" action="{{ url_for('catches_save') }}">
-  <label for="species"> Species</label><br>
-  <input type="text" id="species" name="species"/><br>
-  <input type="checkbox" id="bait1" name="lure_or_fly" value="fly" >
-  <label for="bait1"> Fly</label><br>
-  <input type="checkbox" id="bait2" name="lure_or_fly" value="lure">
-  <label for="bait2"> Lure</label><br>
-  <label for="length"> Length</label><br>
-  <input type="number" id="length" name="length" step="0.1"/><br>
-  <label for="weight"> Weight</label><br>
-  <input type="number" id="weight" name="weight" step="0.1"/><br>
-  <label for="spot"> Spot</label><br>
-  <input type="number" id="spot" name="spot_id"/><br>
-  <label for="description"> Short description about the catch</label><br>
-  <input type="text" id="description" name="description"/><br>
-  <input type="checkbox" id="option1" name="private_or_public" value="private">
-  <label for="option1"> Private publication</label><br>
-  <input type="checkbox" id="option2" name="private_or_public" value="public">
-  <label for="option2"> Public publication</label><br>
-  <input type="submit" value="Change"/>
+  <table>
+      <tr>
+        <td>
+          {{ form.species.label }}
+        </td>
+        <td>
+          {{ form.species }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.lure_or_fly.label }}
+        </td>
+        <td>
+          {{ form.lure_or_fly }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.length.label }}
+        </td>
+        <td>
+          {{ form.length }}
+        </td>
+        <td>
+	  <ul>
+	    {% for error in form.length.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.weight.label }}
+        </td>
+        <td>
+          {{ form.weight }}
+        </td>
+        <td>
+	  <ul>
+	    {% for error in form.weight.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.spot.label }}
+        </td>
+        <td>
+          {{ form.spot }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.description.label }}
+        </td>
+        <td>
+          {{ form.description }}
+        </td>
+        <td>
+	  <ul>
+	    {% for error in form.description.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>
+      </tr>
+           <tr>
+        <td>
+          {{ form.private_or_public.label }}
+        </td>
+        <td>
+          {{ form.private_or_public }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="Change"/>
+        </td>
+      </tr>
+  </form>
 </form>
 {% endblock %}
 
