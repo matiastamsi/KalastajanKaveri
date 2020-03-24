@@ -2,15 +2,20 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('catches_save') }}">
-  <input type="text" name="specie"/><br>
+  <label for="species"> Species</label><br>
+  <input type="text" id="species" name="species"/><br>
   <input type="checkbox" id="bait1" name="lure_or_fly" value="fly" >
   <label for="bait1"> Fly</label><br>
   <input type="checkbox" id="bait2" name="lure_or_fly" value="lure">
   <label for="bait2"> Lure</label><br>
-  <input type="number" name="length" step="0.1"/><br>
-  <input type="number" name="weight" step="0.1"/><br>
-  <input type="number" name="spot_id"/><br>
-  <input type="text" name="description"/><br>
+  <label for="length"> Length</label><br>
+  <input type="number" id="length" name="length" step="0.1"/><br>
+  <label for="weight"> Weight</label><br>
+  <input type="number" id="weight" name="weight" step="0.1"/><br>
+  <label for="spot"> Spot</label><br>
+  <input type="number" id="spot" name="spot_id"/><br>
+  <label for="description"> Short description about the catch</label><br>
+  <input type="text" id="description" name="description"/><br>
   <input type="checkbox" id="option1" name="private_or_public" value="private">
   <label for="option1"> Private publication</label><br>
   <input type="checkbox" id="option2" name="private_or_public" value="public">

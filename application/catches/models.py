@@ -6,7 +6,7 @@ class Catch(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
     onupdate=db.func.current_timestamp())
 
-    specie = db.Column(db.String(144), nullable=False)
+    species = db.Column(db.String(144), nullable=False)
     lure_or_fly = db.Column(db.String(144), nullable=False)
     length = db.Column(db.Float, nullable=False)
     weight = db.Column(db.Float, nullable=False)
@@ -17,8 +17,8 @@ class Catch(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    def __init__(self, specie, lure_or_fly, length, weight, spot_id, description, private_or_public):
-        self.specie = specie
+    def __init__(self, species, lure_or_fly, length, weight, spot_id, description, private_or_public):
+        self.species = species
         self.lure_or_fly = lure_or_fly
         self.length = length
         self.weight = weight

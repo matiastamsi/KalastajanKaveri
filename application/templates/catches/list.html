@@ -3,7 +3,8 @@
 {% block body %}
   <table>
     <tr>
-      <th> Specie </th>
+      <h2> Own catches </h2>
+      <th> Species </th>
       <th> Lure or fly </th>
       <th> Length (cm) </th>
       <th> Weight (kg) </th>
@@ -12,8 +13,9 @@
       <th></th>
     </tr>
     {% for catch in catches %}
+    {% if current_user.id == catch.account_id %}
     <tr>
-      <td>{{ catch.specie }}</td>
+      <td>{{ catch.species }}</td>
       <td>{{ catch.lure_or_fly }}</td>
       <td>{{ catch.length }}</td>
       <td>{{ catch.weight }}</td>
@@ -25,6 +27,33 @@
         </form>
       </td>
     </tr>
+    {% endif %}
     {% endfor %}
+  </table>
+
+  <table>
+  <tr>
+      <h2> Public catches </h2>
+      <th> Species </th>
+      <th> Lure or fly </th>
+      <th> Length (cm) </th>
+      <th> Weight (kg) </th>
+      <th> Spot </th>
+      <th> Description </th>
+      <th></th>
+    </tr>
+    {% for catch in catches %}
+    {% if catch.private_or_public == 'public' %}
+    <tr>
+      <td>{{ catch.species }}</td>
+      <td>{{ catch.lure_or_fly }}</td>
+      <td>{{ catch.length }}</td>
+      <td>{{ catch.weight }}</td>
+      <td>{{ catch.spot_id }}</td>
+      <td>{{ catch.description }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
   </table>
 {% endblock %}

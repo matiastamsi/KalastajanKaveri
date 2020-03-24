@@ -18,7 +18,7 @@ def catches_form():
 @app.route("/catches/", methods=["POST"])
 @login_required
 def catches_create():
-    c = Catch(request.form.get("specie"), request.form.get("lure_or_fly"), request.form.get("length"), request.form.get("weight"), request.form.get("spot_id"), request.form.get("description"), request.form.get("private_or_public"))
+    c = Catch(request.form.get("species"), request.form.get("lure_or_fly"), request.form.get("length"), request.form.get("weight"), request.form.get("spot_id"), request.form.get("description"), request.form.get("private_or_public"))
     c.account_id = current_user.id
     db.session().add(c)
     db.session().commit()
@@ -36,7 +36,7 @@ def catches_change(catch_id):
 @login_required
 def catches_save():
     c = Catch.query.get(catchId)
-    c.specie = request.form.get("specie")
+    c.species = request.form.get("species")
     c.lure_or_fly = request.form.get("lure_or_fly")
     c.length = request.form.get("length")
     c.weight = request.form.get("weight")
