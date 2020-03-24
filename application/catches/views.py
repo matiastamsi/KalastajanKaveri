@@ -1,6 +1,6 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from application.catches.models import Catch
 
 #Variable to store which catch is going to be updated.
@@ -18,7 +18,8 @@ def catches_form():
 @app.route("/catches/", methods=["POST"])
 @login_required
 def catches_create():
-    c = Catch(request.form.get("specie"), request.form.get("lure_or_fly"), request.form.get("length"), request.form.get("weight"), request.form.get("spot_id"), request.form.get("user_id"), request.form.get("description"), request.form.get("private_or_public"))
+    c = Catch(request.form.get("specie"), request.form.get("lure_or_fly"), request.form.get("length"), request.form.get("weight"), request.form.get("spot_id"), request.form.get("description"), request.form.get("private_or_public"))
+    c.account_id = current_user.id
     db.session().add(c)
     db.session().commit()
 
@@ -36,6 +37,13 @@ def catches_change(catch_id):
 def catches_save():
     c = Catch.query.get(catchId)
     c.specie = request.form.get("specie")
+    c.lure_or_fly = request.form.get("lure_or_fly")
+    c.length = request.form.get("length")
+    c.weight = request.form.get("weight")
+    c.spot_id = request.form.get("spot_id")
+    c.description = request.form.get("description")
+    c.public_or_private = request.form.get("public_or_private")
+    c.account_id = current_user.id
     db.session().commit()
 
     return redirect(url_for("catches_index"))

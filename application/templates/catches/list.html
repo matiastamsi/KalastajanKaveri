@@ -8,7 +8,6 @@
       <th> Length (cm) </th>
       <th> Weight (kg) </th>
       <th> Spot </th>
-      <th> User </th>
       <th> Description </th>
       <th></th>
     </tr>
@@ -19,7 +18,6 @@
       <td>{{ catch.length }}</td>
       <td>{{ catch.weight }}</td>
       <td>{{ catch.spot_id }}</td>
-      <td>{{ catch.user_id }}</td>
       <td>{{ catch.description }}</td>
       <td>
         <form method="POST" action="{{ url_for('catches_change', catch_id = catch.id) }}">

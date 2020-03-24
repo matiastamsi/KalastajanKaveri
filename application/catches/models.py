@@ -11,16 +11,17 @@ class Catch(db.Model):
     length = db.Column(db.Float, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     spot_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(144), nullable=False)
     private_or_public = db.Column(db.String(144), nullable=False)
 
-    def __init__(self, specie, lure_or_fly, length, weight, spot_id, user_id, description, private_or_public):
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=False)
+
+    def __init__(self, specie, lure_or_fly, length, weight, spot_id, description, private_or_public):
         self.specie = specie
         self.lure_or_fly = lure_or_fly
         self.length = length
         self.weight = weight
         self.spot_id = spot_id
-        self.user_id = user_id
         self.description = description
         self.private_or_public = private_or_public
