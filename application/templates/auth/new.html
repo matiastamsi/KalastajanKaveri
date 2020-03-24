@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('auth_create') }}">
+  <input type="text" id= "option1" name="name"/>
+  <label for="option1"> Your name</label><br>
+  <input type="text" id= "option2" name="username"/>
+  <label for="option2"> Username</label><br>
+  <input type="password" id= "option3" name="password"/>
+  <label for="option3"> Password</label><br>
+  <input type="submit" value="Sign up"/>
+</form>
+{% endblock %}
+
