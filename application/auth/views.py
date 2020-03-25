@@ -41,6 +41,9 @@ def auth_create():
 
     u = User(form.name.data, form.username.data, form.password.data)
 
+    if User.query.filter(User.username == form.username.data).first():
+        return render_template("auth/new.html", form=form, error = "Username is already taken!")
+
     db.session().add(u)
     db.session().commit()
 
