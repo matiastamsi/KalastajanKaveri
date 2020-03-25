@@ -22,8 +22,8 @@
       <td>{{ catch.spot }}</td>
       <td>{{ catch.description }}</td>
       <td>
-        <form method="POST" action="{{ url_for('catches_change', catch_id = catch.id) }}">
-          <input type="submit" value="Change"/>
+        <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
+          <input type="submit" value="Change or delete"/>
         </form>
       </td>
     </tr>

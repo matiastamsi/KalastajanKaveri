@@ -32,15 +32,24 @@ catchId = 0
 
 @app.route("/catches/<catch_id>/", methods=["POST"])
 @login_required
-def catches_change(catch_id):
+def catches_change_or_delete(catch_id):
+
     global catchId
     catchId = catch_id
-    return render_template("catches/change.html", form = CatchForm())
+    return render_template("catches/change_or_delete.html", form = CatchForm())
 
 @app.route("/catches/catchId", methods=["POST"])
 @login_required
 def catches_save():
+
     form = CatchForm(request.form)
+
+    if form.delete.data:
+        c = Catch.query.get(catchId)
+        db.session().delete(c)
+        db.session().commit()
+
+        return redirect(url_for("catches_index"))
 
     if not form.validate():
         return render_template("catches/change.html", form = form)
@@ -58,3 +67,5 @@ def catches_save():
     db.session().commit()
 
     return redirect(url_for("catches_index"))
+
+

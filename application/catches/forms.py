@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, DecimalField, validators
+from wtforms import StringField, SelectField, DecimalField, BooleanField, validators
 
 class CatchForm(FlaskForm):
     species = StringField("Species") #Lisätään myöhemmin validointi joka viittaa kalalajitauluun
@@ -9,6 +9,8 @@ class CatchForm(FlaskForm):
     spot = StringField("Spot") #Lisätään myöhemmin validointi joka viittaa kalapaikkatauluun
     description = StringField("Description", [validators.Length(min=3, max=100)])
     private_or_public = SelectField("Private or public", choices=[('private', 'Private'),('public', 'Public')])
+
+    delete = BooleanField("Delete the catch permanently")
 
     class Meta:
         csrf = False
