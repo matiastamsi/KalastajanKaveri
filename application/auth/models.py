@@ -1,4 +1,4 @@
-from application import db
+from application import db, bcrypt
 from sqlalchemy import ForeignKey
 
 class User(db.Model):
@@ -12,14 +12,14 @@ class User(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
-    password = db.Column(db.String(144), nullable=False)
+    password = db.Column(db.Text, nullable=False)
 
     catches = db.relationship("Catch", backref='account', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
-        self.password = password
+        self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
     def get_id(self):
         return self.id

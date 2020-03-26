@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app, db
+from application import app, db, bcrypt
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.newforms import SignUpForm
@@ -13,15 +13,20 @@ def auth_login():
 
     form = LoginForm(request.form)
     # mahdolliset validoinnit
-
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
-    if not user:
+    
+    found_user = User.query.filter_by(username = form.data['username']).first()
+    if not found_user:
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 
-
-    login_user(user)
-    return redirect(url_for("index"))
+    authenticated_user = bcrypt.check_password_hash(found_user.password, form.data['password'])
+    if authenticated_user:
+        user = User.query.filter(User.username == form.username.data).first()
+        login_user(user)
+        return redirect(url_for("index"))
+    else:
+        return render_template("auth/loginform.html", form = form,
+                               error = "No such username or password")
 
 @app.route("/auth/logout")
 def auth_logout():
@@ -39,14 +44,12 @@ def auth_create():
     if not form.validate():
         return render_template("auth/new.html", form=form)
 
-    u = User(form.name.data, form.username.data, form.password.data)
-
     if User.query.filter(User.username == form.username.data).first():
         return render_template("auth/new.html", form=form, error = "Username is already taken!")
 
+    u = User(form.name.data, form.username.data, form.password.data)
     db.session().add(u)
     db.session().commit()
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
-    login_user(user)
+    login_user(u)
     return redirect(url_for("index"))
