@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy import ForeignKey
 
 class User(db.Model):
 
@@ -22,6 +23,9 @@ class User(db.Model):
 
     def get_id(self):
         return self.id
+
+    def get_name(self):
+        return self.name
 
     def is_active(self):
         return True

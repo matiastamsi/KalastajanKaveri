@@ -1,4 +1,5 @@
 from application import db
+from application.auth.models import User
 
 class Catch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,6 +17,7 @@ class Catch(db.Model):
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
+    fisher = db.Column(db.String(144), nullable=False)
 
     def __init__(self, species, lure_or_fly, length, weight, spot, description, private_or_public):
         self.species = species

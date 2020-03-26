@@ -3,9 +3,11 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from application.catches.models import Catch
 from application.catches.forms import CatchForm
+from application.auth.models import User
 
 @app.route("/catches", methods=["GET"])
 def catches_index():
+    
     return render_template("catches/list.html", catches = Catch.query.all())
 
 @app.route("/catches/new/")
@@ -23,6 +25,7 @@ def catches_create():
 
     c = Catch(form.species.data, form.lure_or_fly.data, form.length.data, form.weight.data, form.spot.data, form.description.data, form.private_or_public.data)
     c.account_id = current_user.id
+    c.fisher = current_user.name
     db.session().add(c)
     db.session().commit()
 
@@ -64,6 +67,7 @@ def catches_save():
     c.description = form.description.data
     c.private_or_public = form.private_or_public.data
     c.account_id = current_user.id
+    c.fisher = current_user.name
     db.session().commit()
 
     return redirect(url_for("catches_index"))
