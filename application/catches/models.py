@@ -1,11 +1,8 @@
 from application import db
 from application.auth.models import User
+from application.models import Base
 
-class Catch(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
+class Catch(Base):
 
     species = db.Column(db.String(144), nullable=False)
     lure_or_fly = db.Column(db.String(144), nullable=False)

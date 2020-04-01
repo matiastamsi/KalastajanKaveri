@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <h2> Fish species </h2>
+      <th> Name </th>
+      <th> Minimum catch length (cm) </th>
+      <th> Closed season starts </th>
+      <th> Closed season ends </th>
+      <th></th>
+    </tr>
+    {% for fish in fishes %}
+    <tr>
+      <td>{{ fish.name }}</td>
+      <td>{{ fish.minimum_catch_size }}</td>
+      <td>{{ fish.closed_season_starts }}</td>
+      <td>{{ fish.closed_season_ends }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
+          <input type="submit" value="Change or delete"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

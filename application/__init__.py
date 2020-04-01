@@ -23,8 +23,11 @@ from application.catches import views
 
 from application.auth import models
 from application.auth import views
-
 from application.auth.models import User
+
+from application.fish import models
+from application.fish import views
+
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
