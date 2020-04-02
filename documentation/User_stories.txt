@@ -1,9 +1,26 @@
-User Stories
+# User stories / Käyttäjätarinat
 
-Olen Kalle ja haluan pitää kirjaa ennätyssaaleistani. Näin voin myös vertailla ennätyksiäni toisten saaleihin.
+## Vapaa-ajan kalastaja...
 
-Olen Mirja ja haluan pitää kirjaa saaleista eri kalapaikoissa. Löydän tällä tavalla parhaan kalapaikan. Onneksi voin myös nähdä mitä ja mistä muut kalastajat ovat saaneet.
+  - ... tarkistaa rauhoitusajan alkamisen tai päättymisen.
+  - ... tarkistaa kalalajin alamitan.
+  - ... voi katsella, mistä on saatu tiettyjä kaloja.
+  - ... voi katsella, milloin on saatu kalaa.
+  - ... voi etsiä ennätyksiä.
+  - ... voi pitää kirjaa omista saaleistaan.
+  - ... voi listata kaikki omat että julkiset saaliit.
+  - ... voi lisätä uuden kalalajin, jos sitä ei vielä ole.
 
-Olen Seppo, kalastuskerhon johtaja. Käytämme sovellusta virallisena alustana järjestämässänne kalastuskilpailussa.
+## Kalastuskilpailun järjestäjä tai kalastusopas tms...
 
-Olen Tarja, Kuntalan kunnan virkailija, jonka tehtävänä on selvittää, minne Kuntalan joen koskiin pitäisi ensi sijaisesti istuttaa lisää kaloja. Sovellus auttaa minua tässä.
+  - ... voi pitää kirjaa tuloksista.
+  - ... voi tarjota reaaliaikaisen kilpailutilanteen.
+  - ... voi esitellä tuloksia.
+
+
+## Kalastonhoitaja, kalastusvalvoja tms...
+
+  - ... voi seurata, missä kalastajat liikkuvat.
+  - ... voi seurata, minne pitää istuttaa lisää kaloja.
+  - ... voi tarkastella rikkeitä, jos esiintyy.
+  - ... voi päivittää kalalajien infoa, jos muut eivät ole tehneet sitä.
