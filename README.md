@@ -10,6 +10,7 @@ Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
 kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 
 - saalismerkintöjen haku (omat ja julkiset):
+
   - kaiken kaikkiaan (kahden vuoden ajalta)
   - kalapaikan perusteella (kahden vuoden ajalta)
   - päivämäärän perusteella
