@@ -1,5 +1,7 @@
 # KalastajanKaveri
 
+
+
 KalastajanKaveri-sovelluksella jokainen kalastaja voi pitää kirjaa omista saaleistaan
 sekä nähdä muiden jakamia saalismerkintöjä - jos he suinkaan haluavat paljastaa niitä!
 Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
