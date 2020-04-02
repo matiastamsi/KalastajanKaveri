@@ -39,7 +39,7 @@ class Catch(Base):
     @staticmethod
     def find_species_catched():
 
-        stmt = text("SELECT Fish.name, COUNT(Catch.species_id) FROM Fish LEFT JOIN Catch ON Fish.id = Catch.species_id")
+        stmt = text("SELECT Fish.name, COUNT(Catch.species_id) FROM Fish LEFT JOIN Catch ON Fish.id = Catch.species_id GROUP BY Fish.name")
         res = db.engine.execute(stmt)
 
         response = []
