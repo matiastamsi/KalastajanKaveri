@@ -36,7 +36,6 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 
 [Sovellus Herokussa](https://quiet-stream-39899.herokuapp.com/)
 
-
 ## Rekisteröinti ja kirjautuminen
 
 Tällä hetkellä validoidaan seuraavat asiat:
