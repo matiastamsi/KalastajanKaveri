@@ -4,5 +4,19 @@
   <p>
     Welcome to KalastajanKaveri!
   </p>
+  {% if species_catched is defined %}
+  <p>
+    Catches raported so far:
+  </p>
+  <ul>
+    {% for catch in species_catched %}
+    <li>
+      {{catch.name}} {{catch.count}}
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% endif %}
+
 {% endblock %}
 

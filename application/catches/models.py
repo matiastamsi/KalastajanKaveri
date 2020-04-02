@@ -4,6 +4,8 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
+import datetime
+
 class Catch(Base):
 
     lure_or_fly = db.Column(db.String(144), nullable=False)
@@ -33,3 +35,16 @@ class Catch(Base):
 	
         for res in res:
             return res.name
+
+    @staticmethod
+    def find_species_catched():
+
+        stmt = text("SELECT (SELECT Fish.name FROM Fish WHERE Fish.id = Catch.species_id), COUNT(Catch.species_id)"
+                    " FROM Catch LEFT JOIN Fish ON Fish.id = Catch.species_id")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0], "count":row[1]})
+
+        return response
