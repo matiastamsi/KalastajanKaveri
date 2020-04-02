@@ -35,6 +35,7 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 
 
 ## Rekisteröinti ja kirjautuminen
+
 Tällä hetkellä validoidaan seuraavat asiat:
   - Käyttäjän nimen on oltava vähintään kaksi merkkiä pitkä
   - Käyttäjätunnuksen on oltava uniikki (tietokannassa ei toista) sekä vähintään 8 merkkiä pitkä.
