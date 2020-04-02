@@ -23,10 +23,11 @@ def fish_create():
     if not form.validate():
         return render_template("fish/new.html", form = form)
 
-    f = Fish(form.name.data,
+    f = Fish(
+        form.name.data.lower().strip(),
         form.minimum_catch_size.data,
-        str(form.closed_season_starts_day.data) + '/' + str(form.closed_season_starts_month.data),
-        str(form.closed_season_ends_day.data) + '/' + str(form.closed_season_ends_month.data))
+        str(form.closed_season_starts_day.data) + '.' + str(form.closed_season_starts_month.data),
+        str(form.closed_season_ends_day.data) + '.' + str(form.closed_season_ends_month.data))
 
     db.session().add(f)
     db.session().commit()

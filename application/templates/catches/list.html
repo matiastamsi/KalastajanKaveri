@@ -15,7 +15,7 @@
     {% for catch in catches %}
     {% if current_user.id == catch.account_id %}
     <tr>
-      <td>{{ catch.species }}</td>
+      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
       <td>{{ catch.lure_or_fly }}</td>
       <td>{{ catch.length }}</td>
       <td>{{ catch.weight }}</td>
@@ -46,7 +46,7 @@
     {% for catch in catches %}
     {% if catch.private_or_public == 'public' %}
     <tr>
-      <td>{{ catch.species }}</td>
+      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
       <td>{{ catch.lure_or_fly }}</td>
       <td>{{ catch.length }}</td>
       <td>{{ catch.weight }}</td>

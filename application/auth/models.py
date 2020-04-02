@@ -1,6 +1,5 @@
 from application import db, bcrypt
 from application.models import Base
-from sqlalchemy import ForeignKey
 
 
 class User(Base):

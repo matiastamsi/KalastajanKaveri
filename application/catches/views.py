@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from application.catches.models import Catch
 from application.catches.forms import CatchForm
 from application.auth.models import User
+from application.fish.models import Fish
 
 @app.route("/catches", methods=["GET"])
 def catches_index():
@@ -23,7 +24,19 @@ def catches_create():
     if not form.validate():
         return render_template("catches/new.html", form = form)
 
-    c = Catch(form.species.data, form.lure_or_fly.data, form.length.data, form.weight.data, form.spot.data, form.description.data, form.private_or_public.data)
+    #Find the species from fish table.
+    s_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
+    if s_id == None:
+        return render_template("catches/new.html", form = form,
+                               error = "No such species")
+    c = Catch(
+        form.lure_or_fly.data,
+        form.length.data,
+        form.weight.data,
+        form.spot.data.capitalize(),
+        form.description.data,
+        form.private_or_public.data)
+    c.species_id = s_id
     c.account_id = current_user.id
     c.fisher = current_user.name
     db.session().add(c)
@@ -59,11 +72,11 @@ def catches_save():
 
 
     c = Catch.query.get(catchId)
-    c.species = form.species.data
+    c.species = form.species.data.lower().strip()
     c.lure_or_fly = form.lure_or_fly.data
     c.length = form.length.data
     c.weight = form.weight.data
-    c.spot = form.spot.data
+    c.spot = form.spot.data.capitalize()
     c.description = form.description.data
     c.private_or_public = form.private_or_public.data
     c.account_id = current_user.id
