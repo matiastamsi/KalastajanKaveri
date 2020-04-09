@@ -1,8 +1,11 @@
+
 {% extends "layout.html" %}
 
 {% block body %}
+
 <form method="POST" action="{{ url_for('catches_save') }}">
   <table>
+    <h3>Delete the catch...</h3>
       <tr>
         <td>
           {{ form.delete.label }}
@@ -12,11 +15,22 @@
         </td>
       </tr>
       <tr>
+        <td colspan="2">
+          <input type="submit" value="Delete"/>
+        </td>
+      </tr>
+  </table>
+</form>
+
+<form method="POST" action="{{ url_for('catches_save') }}">
+  <table>
+    <h3>...or change it here!</h3>
+      <tr>
         <td>
           {{ form.species.label }}
         </td>
         <td>
-          {{ form.species }}
+          {{ form.species(placeholder = catch.find_name_based_on_id(id=catch.species_id)) }}
         </td>
       </tr>
       <tr>
@@ -32,7 +46,7 @@
           {{ form.length.label }}
         </td>
         <td>
-          {{ form.length }}
+          {{ form.length(placeholder = catch.length) }}
         </td>
         <td>
 	  <ul>
@@ -47,7 +61,7 @@
           {{ form.weight.label }}
         </td>
         <td>
-          {{ form.weight }}
+          {{ form.weight(placeholder = catch.weight) }}
         </td>
         <td>
 	  <ul>
@@ -62,7 +76,7 @@
           {{ form.spot.label }}
         </td>
         <td>
-          {{ form.spot }}
+          {{ form.spot(placeholder = catch.spot) }}
         </td>
       </tr>
       <tr>
@@ -70,7 +84,7 @@
           {{ form.description.label }}
         </td>
         <td>
-          {{ form.description }}
+          {{ form.description(placeholder = catch.description) }}
         </td>
         <td>
 	  <ul>
@@ -80,7 +94,7 @@
 	  </ul>
 	</td>
       </tr>
-           <tr>
+      <tr>
         <td>
           {{ form.private_or_public.label }}
         </td>
@@ -93,7 +107,5 @@
           <input type="submit" value="Save"/>
         </td>
       </tr>
-  </form>
 </form>
 {% endblock %}
-

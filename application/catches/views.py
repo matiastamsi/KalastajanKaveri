@@ -52,7 +52,17 @@ def catches_change_or_delete(catch_id):
 
     global catchId
     catchId = catch_id
-    return render_template("catches/change_or_delete.html", form = CatchForm())
+    catch = Catch.query.get(catch_id)
+    form = CatchForm()
+    if catch.lure_or_fly == 'fly':
+        form.change_choice('fly')
+    else:
+        form.change_choice('lure')
+    if catch.private_or_public == 'public':
+        form.change_privacy('public')
+    else:
+        form.change_privacy('private')
+    return render_template("catches/change_or_delete.html", form = form, catch = catch)
 
 @app.route("/catches/catchId", methods=["POST"])
 @login_required
@@ -68,7 +78,8 @@ def catches_save():
         return redirect(url_for("catches_index"))
 
     if not form.validate():
-        return render_template("catches/change.html", form = form)
+        catch = Catch.query.get(catchId)
+        return render_template("catches/change_or_delete.html", form = form, catch = catch)
 
 
     c = Catch.query.get(catchId)
@@ -84,5 +95,4 @@ def catches_save():
     db.session().commit()
 
     return redirect(url_for("catches_index"))
-
 

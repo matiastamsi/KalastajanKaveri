@@ -3,6 +3,7 @@
 {% block body %}
 <form method="POST" action="{{ url_for('fish_save') }}">
   <table>
+    <h3>Delete the species...</h3>
       <tr>
         <td>
           {{ form.delete.label }}
@@ -12,11 +13,22 @@
         </td>
       </tr>
       <tr>
+        <td colspan="2">
+          <input type="submit" value="Delete"/>
+        </td>
+      </tr>
+  </table>
+</form>
+
+<form method="POST" action="{{ url_for('fish_save') }}">
+  <table>
+    <h3>...or change the species here!</h3>
+      <tr>
         <td>
           {{ form.name.label }}
         </td>
         <td>
-          {{ form.name }}
+          {{ form.name(placeholder = fish.name) }}
         </td>
       </tr>
       <tr>
@@ -24,7 +36,7 @@
           {{ form.minimum_catch_size.label }}
         </td>
         <td>
-          {{ form.minimum_catch_size }}
+          {{ form.minimum_catch_size(placeholder = fish.minimum_catch_size) }}
         </td>
         <td>
 	  <ul>
@@ -39,7 +51,7 @@
           {{ form.closed_season_starts_day.label }}
         </td>
         <td>
-          {{ form.closed_season_starts_day }}
+          {{ form.closed_season_starts_day(placeholder = fish.getDay(dateToSplit= fish.closed_season_starts)) }}
         </td>
         <td>
 	  <ul>
@@ -52,7 +64,7 @@
           {{ form.closed_season_starts_month.label }}
         </td>
         <td>
-          {{ form.closed_season_starts_month }}
+          {{ form.closed_season_starts_month(placeholder = fish.getMonth(dateToSplit= fish.closed_season_starts)) }}
         </td>
         <td>
 	  <ul>
@@ -67,7 +79,7 @@
           {{ form.closed_season_ends_day.label }}
         </td>
         <td>
-          {{ form.closed_season_ends_day }}
+           {{ form.closed_season_ends_day(placeholder = fish.getDay(dateToSplit= fish.closed_season_ends)) }}
         </td>
         <td>
 	  <ul>
@@ -80,7 +92,7 @@
           {{ form.closed_season_ends_month.label }}
         </td>
         <td>
-          {{ form.closed_season_ends_month }}
+          {{ form.closed_season_ends_month(placeholder = fish.getMonth(dateToSplit= fish.closed_season_ends)) }}
         </td>
         <td>
 	  <ul>

@@ -42,7 +42,8 @@ def fish_change_or_delete(fish_id):
 
     global fishId
     fishId = fish_id
-    return render_template("fish/change_or_delete.html", form = FishForm())
+    fish = Fish.query.get(fish_id)
+    return render_template("fish/change_or_delete.html", form = FishForm(), fish = fish)
 
 @app.route("/fish/fishId", methods=["POST"])
 @login_required
@@ -58,14 +59,15 @@ def fish_save():
         return redirect(url_for("fish_index"))
 
     if not form.validate():
-        return render_template("fish/change.html", form = form)
+        fish = Fish.query.get(fishId)
+        return render_template("fish/change_or_delete.html", form = form, fish = fish)
 
 
     f = Fish.query.get(fishId)
     f.name = form.name.data
     f.minimum_catch_size = form.minimum_catch_size.data
-    f.closed_season_starts.data = str(form.closed_season_starts_day.data) + '/' + str(form.closed_season_starts_month.data)
-    f.closed_season_ends_day = str(form.closed_season_ends_day.data) + '/' + str(form.closed_season_ends_month.data)
+    f.closed_season_starts = str(form.closed_season_starts_day.data) + '.' + str(form.closed_season_starts_month.data)
+    f.closed_season_ends = str(form.closed_season_ends_day.data) + '.' + str(form.closed_season_ends_month.data)
     db.session().commit()
 
     return redirect(url_for("fish_index"))
