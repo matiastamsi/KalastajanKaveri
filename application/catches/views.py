@@ -1,6 +1,7 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
+
+from application import app, db, login_required
 from application.catches.models import Catch
 from application.catches.forms import CatchForm
 from application.auth.models import User
@@ -12,12 +13,12 @@ def catches_index():
     return render_template("catches/list.html", catches = Catch.query.all())
 
 @app.route("/catches/new/")
-@login_required
+@login_required(role="USER")
 def catches_form():
     return render_template("catches/new.html", form = CatchForm())
 
 @app.route("/catches/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def catches_create():
     form = CatchForm(request.form)
 
@@ -53,6 +54,10 @@ def catches_change_or_delete(catch_id):
     global catchId
     catchId = catch_id
     catch = Catch.query.get(catch_id)
+
+    if catch.account_id != current_user.id:
+        return loqin_manager.unauthorized()
+
     form = CatchForm()
     if catch.lure_or_fly == 'fly':
         form.change_choice('fly')
@@ -69,20 +74,20 @@ def catches_change_or_delete(catch_id):
 def catches_save():
 
     form = CatchForm(request.form)
+    c = Catch.query.get(catchId)
+
+    if catch.account_id != current_user.id:
+        return loqin_manager.unauthorized()
 
     if form.delete.data:
-        c = Catch.query.get(catchId)
         db.session().delete(c)
         db.session().commit()
 
         return redirect(url_for("catches_index"))
 
     if not form.validate():
-        catch = Catch.query.get(catchId)
-        return render_template("catches/change_or_delete.html", form = form, catch = catch)
+        return render_template("catches/change_or_delete.html", form = form, catch = c)
 
-
-    c = Catch.query.get(catchId)
     c.species = form.species.data.lower().strip()
     c.lure_or_fly = form.lure_or_fly.data
     c.length = form.length.data

@@ -11,6 +11,7 @@
       <th></th>
     </tr>
     {% for fish in fishes %}
+    {% if authenticated %}
     <tr>
       <td>{{ fish.name }}</td>
       <td>{{ fish.minimum_catch_size }}</td>
@@ -22,6 +23,14 @@
         </form>
       </td>
     </tr>
+    {% else %}
+    <tr>
+      <td>{{ fish.name }}</td>
+      <td>{{ fish.minimum_catch_size }}</td>
+      <td>{{ fish.closed_season_starts }}</td>
+      <td>{{ fish.closed_season_ends }}</td>
+    </tr>
+    {% endif %}
     {% endfor %}
   </table>
 {% endblock %}

@@ -1,22 +1,22 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
+
 from application.fish.models import Fish
 from application.fish.forms import FishForm
 from application.auth.models import User
 
 @app.route("/fish", methods=["GET"])
 def fish_index():
-    
-    return render_template("fish/list.html", fishes = Fish.query.all())
+    return render_template("fish/list.html", fishes = Fish.query.all(), authenticated = current_user.is_authenticated)
 
 @app.route("/fish/new/")
-@login_required
+@login_required(role="USER")
 def fish_form():
     return render_template("fish/new.html", form = FishForm())
 
 @app.route("/fish/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def fish_create():
     form = FishForm(request.form)
 
@@ -37,7 +37,7 @@ def fish_create():
 fishId = 0
 
 @app.route("/fish/<fish_id>/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def fish_change_or_delete(fish_id):
 
     global fishId
@@ -46,7 +46,7 @@ def fish_change_or_delete(fish_id):
     return render_template("fish/change_or_delete.html", form = FishForm(), fish = fish)
 
 @app.route("/fish/fishId", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def fish_save():
 
     form = FishForm(request.form)

@@ -52,3 +52,4 @@ def auth_create():
 
     login_user(u)
     return redirect(url_for("index"))
+
