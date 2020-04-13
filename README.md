@@ -36,11 +36,3 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 [Käyttöohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/kayttoohje.md)
 
 [Asennusohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/asennusohje.md)
-
-
-## Rekisteröinti ja kirjautuminen
-
-Tällä hetkellä validoidaan seuraavat asiat:
-  - Käyttäjän nimen on oltava vähintään kaksi merkkiä pitkä
-  - Käyttäjätunnuksen on oltava uniikki (tietokannassa ei toista) sekä vähintään 8 merkkiä pitkä.
-  - Salasanan on oltava vähintään 10 merkkiä pitkä sekä täsmätä kahdesti kirjoittaessa.
