@@ -10,6 +10,16 @@
         <td>
           {{ form.name }}
         </td>
+        <td>
+	  <ul>
+            {% if error == "The species already exists!" %}
+            <li>{{ error }}</li>
+            {% endif %}
+	    {% for error in form.name.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>
       </tr>
       <tr>
         <td>

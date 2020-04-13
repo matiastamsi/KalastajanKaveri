@@ -23,6 +23,9 @@ def fish_create():
     if not form.validate():
         return render_template("fish/new.html", form = form)
 
+    if Fish.query.filter(Fish.name == form.name.data.lower().strip()).first():
+        return render_template("fish/new.html", form=form, error = "The species already exists!")
+
     f = Fish(
         form.name.data.lower().strip(),
         form.minimum_catch_size.data,
@@ -58,10 +61,13 @@ def fish_save():
 
         return redirect(url_for("fish_index"))
 
+    if Fish.query.filter(Fish.name == form.name.data.lower().strip()).first():
+        fish = Fish.query.get(fishId)
+        return render_template("fish/change_or_delete.html", form=form, fish=fish, error = "The species already exists!")
+
     if not form.validate():
         fish = Fish.query.get(fishId)
         return render_template("fish/change_or_delete.html", form = form, fish = fish)
-
 
     f = Fish.query.get(fishId)
     f.name = form.name.data

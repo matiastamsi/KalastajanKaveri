@@ -7,8 +7,8 @@ class User(Base):
 
     __tablename__ = "account"
 
-    name = db.Column(db.String(144), nullable=False)
-    username = db.Column(db.String(144), nullable=False)
+    name = db.Column(db.String(144), nullable=False, unique=True)
+    username = db.Column(db.String(144), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
 
     role = db.Column(db.Integer, nullable= False) #USER: 1, ADMIN: 2, OWNER: 3

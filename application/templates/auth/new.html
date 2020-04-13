@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 
 {% block body %}
@@ -12,12 +13,15 @@
         {{ form.name }}
       </td>
       <td>
-          <ul>
-            {% for error in form.name.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
+        <ul>
+          {% if errorName == "Name is already taken!" %}
+          <li>{{ errorName }}</li>
+          {% endif %}
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -27,12 +31,15 @@
         {{ form.username }}
       </td>
       <td>
-	  <ul>
-	    {% for error in form.username.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
+	<ul>
+          {% if errorUsername == "Username is already taken!" %}
+          <li>{{ errorUsername }}</li>
+          {% endif %}
+	  {% for error in form.username.errors %}
+	  <li>{{ error }}</li>
+	  {% endfor %}
+	</ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -42,12 +49,12 @@
         {{ form.password }}
       </td>
       <td>
-          <ul>
-            {% for error in form.password.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
+        <ul>
+          {% for error in form.password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -57,7 +64,6 @@
         {{ form.confirm }}
       </td>
     </tr>
-
     <tr>
       <td colspan="2">
         <input type="submit" value="Sign up"/>
@@ -65,5 +71,4 @@
     </tr>
 </form>
 {% endblock %}
-
 

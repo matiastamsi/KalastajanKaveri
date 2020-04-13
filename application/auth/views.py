@@ -40,11 +40,15 @@ def auth_form():
 def auth_create():
     form = SignUpForm(request.form)
 
+    if User.query.filter(User.name == form.name.data).first() and User.query.filter(User.username == form.username.data).first():
+        return render_template("auth/new.html", form=form, errorName = "Name is already taken!", errorUsername = "Username is already taken!")
+    elif User.query.filter(User.name == form.name.data).first():
+        return render_template("auth/new.html", form=form, errorName = "Name is already taken!")
+    elif User.query.filter(User.username == form.username.data).first():
+        return render_template("auth/new.html", form=form, errorUsername = "Username is already taken!")
+
     if not form.validate():
         return render_template("auth/new.html", form=form)
-
-    if User.query.filter(User.username == form.username.data).first():
-        return render_template("auth/new.html", form=form, error = "Username is already taken!")
 
     u = User(form.name.data, form.username.data, form.password.data)
     db.session().add(u)
