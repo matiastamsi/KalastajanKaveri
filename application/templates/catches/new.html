@@ -3,6 +3,7 @@
 {% block body %}
 <form method="POST" action="{{ url_for('catches_create') }}">
   <table>
+      <h3> Add a new catch </h3>
       <tr>
 	<td>
 	  {{ form.species.label }}
@@ -10,6 +11,13 @@
 	<td>
 	  {{ form.species }}
 	</td>
+        <td>
+          <ul>
+          {% if error == "No such a species!" %}
+          <li>{{ error }}</li>
+          {% endif %}
+          </ul>
+        </td>
       </tr>
       <tr>
         <td>

@@ -3,20 +3,37 @@
 {% block body %}
   <table>
     <tr>
-      <h2> Fish species </h2>
-      <th> Name </th>
-      <th> Minimum catch length (cm) </th>
-      <th> Closed season starts </th>
-      <th> Closed season ends </th>
+      <h3> Fish species </h3>
+      <p> This information about fish species is provided by other fishers. If you spot a mistake or no more valid information, <b>please update it</b>. Every registered user can change or delete information.</p>
+      <th>
+        <pre>  Name  </pre>
+      </th>
+      <th> 
+        <pre>  Minimum catch length (cm)  </pre>
+      </th>
+      <th>
+        <pre>  Closed season starts  </pre>
+      </th>
+      <th> 
+        <pre>  Closed season ends  </pre>
+      </th>
       <th></th>
     </tr>
     {% for fish in fishes %}
     {% if authenticated %}
     <tr>
-      <td>{{ fish.name }}</td>
-      <td>{{ fish.minimum_catch_size }}</td>
-      <td>{{ fish.closed_season_starts }}</td>
-      <td>{{ fish.closed_season_ends }}</td>
+      <td>
+        <pre>  {{ fish.name }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ fish.minimum_catch_size }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ fish.closed_season_starts }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ fish.closed_season_ends }}  </pre>
+      </td>
       <td>
         <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
           <input type="submit" value="Change or delete"/>

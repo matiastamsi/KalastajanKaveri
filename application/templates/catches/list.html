@@ -4,23 +4,48 @@
   <table>
     <tr>
       <h2> Own catches </h2>
-      <th> Species </th>
-      <th> Lure or fly </th>
-      <th> Length (cm) </th>
-      <th> Weight (kg) </th>
-      <th> Spot </th>
-      <th> Description </th>
+      <p> You can see all of your catches. The other users can not see your private catches.</p>
+      <th>
+        <pre>  Species  </pre>
+      </th>
+      <th>
+        <pre>  Lure or fly  </pre>
+      </th>
+      <th>
+        <pre>  Length (cm)  </pre>
+      </th>
+      <th>
+        <pre>  Weight (kg)  </pre>
+      </th>
+      <th>
+        <pre>  Spot  </pre>
+      </th>
+      <th>
+        <pre>  Description  </pre>
+      </th>
       <th></th>
     </tr>
     {% for catch in catches %}
     {% if current_user.id == catch.account_id %}
     <tr>
-      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
-      <td>{{ catch.lure_or_fly }}</td>
-      <td>{{ catch.length }}</td>
-      <td>{{ catch.weight }}</td>
-      <td>{{ catch.spot }}</td>
-      <td>{{ catch.description }}</td>
+      <td>
+        <pre>  {{ catch.find_name_based_on_id(catch.species_id) }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.lure_or_fly }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.length }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.weight }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.spot }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.description }}  </pre>
+      </td>
       <td>
         <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
           <input type="submit" value="Change or delete"/>
@@ -30,29 +55,52 @@
     {% endif %}
     {% endfor %}
   </table>
-
+<br></br>
   <table>
   <tr>
       <h2> Public catches </h2>
-      <th> Species </th>
-      <th> Lure or fly </th>
-      <th> Length (cm) </th>
-      <th> Weight (kg) </th>
-      <th> Fisher </th>
-      <th> Spot </th>
-      <th> Description </th>
+      <p> Here is public catches. If you have added a public catch, it will show in here as well.</p>
+      <th>
+        <pre>  Species  </pre>
+      </th>
+      <th>
+        <pre>  Lure or fly  </pre>
+      </th>
+      <th>
+        <pre>  Length (cm)  </pre>
+      </th>
+      <th>
+        <pre>  Weight (kg)  </pre>
+      </th>
+      <th>
+        <pre>  Spot  </pre>
+      </th>
+      <th>
+        <pre>  Description  </pre>
+      </th>
       <th></th>
     </tr>
     {% for catch in catches %}
     {% if catch.private_or_public == 'public' %}
     <tr>
-      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
-      <td>{{ catch.lure_or_fly }}</td>
-      <td>{{ catch.length }}</td>
-      <td>{{ catch.weight }}</td>
-      <td>{{ catch.fisher }}</td>
-      <td>{{ catch.spot }}</td>
-      <td>{{ catch.description }}</td>
+      <td>
+        <pre>  {{ catch.find_name_based_on_id(catch.species_id) }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.lure_or_fly }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.length }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.weight }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.spot }}  </pre>
+      </td>
+      <td>
+        <pre>  {{ catch.description }}  </pre>
+      </td>
     </tr>
     {% endif %}
     {% endfor %}

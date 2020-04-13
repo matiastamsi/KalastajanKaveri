@@ -28,7 +28,7 @@ def catches_create():
     s_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
     if s_id == None:
         return render_template("catches/new.html", form = form,
-                               error = "No such species")
+                               error = "No such a species!")
     c = Catch(
               form.lure_or_fly.data,
               form.length.data,
