@@ -29,9 +29,13 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 
 ## Dokumentaatio
 
-[Tietokantakaavio](https://dbdiagram.io/d/5e68b12c4495b02c3b8817a8)
+[Tietokantakaavio](https://github.com/matiastamsi/KalastajanKaveri/blob/master/images/database_diagram.png)
 
-[User stories](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/User_stories.txt)
+[User stories](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/User_stories.md)
+
+[Käyttöohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/kayttoohje.md)
+
+[Asennusohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/asennusohje.md)
 
 
 ## Rekisteröinti ja kirjautuminen
