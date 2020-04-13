@@ -9,7 +9,6 @@ from application.fish.models import Fish
 
 @app.route("/catches", methods=["GET"])
 def catches_index():
-    
     return render_template("catches/list.html", catches = Catch.query.all())
 
 @app.route("/catches/new/")
@@ -31,12 +30,12 @@ def catches_create():
         return render_template("catches/new.html", form = form,
                                error = "No such species")
     c = Catch(
-        form.lure_or_fly.data,
-        form.length.data,
-        form.weight.data,
-        form.spot.data.capitalize(),
-        form.description.data,
-        form.private_or_public.data)
+              form.lure_or_fly.data,
+              form.length.data,
+              form.weight.data,
+              form.spot.data.capitalize(),
+              form.description.data,
+              form.private_or_public.data)
     c.species_id = s_id
     c.account_id = current_user.id
     c.fisher = current_user.name
@@ -44,7 +43,7 @@ def catches_create():
     db.session().commit()
 
     return redirect(url_for("catches_index"))
-
+#Variable used to store the id of the catch in the processing. 
 catchId = 0
 
 @app.route("/catches/<catch_id>/", methods=["POST"])
@@ -54,11 +53,12 @@ def catches_change_or_delete(catch_id):
     global catchId
     catchId = catch_id
     catch = Catch.query.get(catch_id)
-
-    if catch.account_id != current_user.id:
+    #Check that catch is user's own catch or current user has admin/owner role.
+    if catch.account_id != current_user.id and current_user.role < 2:
         return loqin_manager.unauthorized()
 
     form = CatchForm()
+    #To show old choices in a form, set SelectField values correct.
     if catch.lure_or_fly == 'fly':
         form.change_choice('fly')
     else:
@@ -76,7 +76,7 @@ def catches_save():
     form = CatchForm(request.form)
     c = Catch.query.get(catchId)
 
-    if catch.account_id != current_user.id:
+    if catch.account_id != current_user.id and current_user.role < 2:
         return loqin_manager.unauthorized()
 
     if form.delete.data:

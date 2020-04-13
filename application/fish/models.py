@@ -27,8 +27,9 @@ class Fish(Base):
         for res in res:
             return res.id
 
+    #Function to get only day.
     def getDay(self, dateToSplit):
         return dateToSplit.split('.')[0]
-
+    #Function to get only month.
     def getMonth(self, dateToSplit):
         return dateToSplit.split('.')[1]

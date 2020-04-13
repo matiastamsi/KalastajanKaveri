@@ -14,11 +14,14 @@ def auth_login():
     form = LoginForm(request.form)
     
     found_user = User.query.filter_by(username = form.data['username']).first()
+
     if not found_user:
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
+    #Use bcrypt's method "check_password_hash" to check if password is correct.
+    authenticated_user = bcrypt.check_password_hash(found_user.password,
+                                                    form.data['password'])
 
-    authenticated_user = bcrypt.check_password_hash(found_user.password, form.data['password'])
     if authenticated_user:
         user = User.query.filter(User.username == form.username.data).first()
         login_user(user)
@@ -40,12 +43,17 @@ def auth_form():
 def auth_create():
     form = SignUpForm(request.form)
 
-    if User.query.filter(User.name == form.name.data).first() and User.query.filter(User.username == form.username.data).first():
-        return render_template("auth/new.html", form=form, errorName = "Name is already taken!", errorUsername = "Username is already taken!")
+    if User.query.filter(User.name == form.name.data,
+                         User.username == form.username.data).first():
+        return render_template("auth/new.html", form=form,
+                               errorName = "Name is already taken!",
+                               errorUsername = "Username is already taken!")
     elif User.query.filter(User.name == form.name.data).first():
-        return render_template("auth/new.html", form=form, errorName = "Name is already taken!")
+        return render_template("auth/new.html", form=form,
+                               errorName = "Name is already taken!")
     elif User.query.filter(User.username == form.username.data).first():
-        return render_template("auth/new.html", form=form, errorUsername = "Username is already taken!")
+        return render_template("auth/new.html", form=form,
+                               errorUsername = "Username is already taken!")
 
     if not form.validate():
         return render_template("auth/new.html", form=form)
