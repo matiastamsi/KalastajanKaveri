@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>
+<h1>
   Welcome to KalastajanKaveri!
-</h3>
+</h1>
 <p>
 Whether you are a pro fisher or just a beginner, you came to the right place. Navigate from the top, here is a little taste of the app:
 </p>
 {% if species_catched is defined %}
-  <h5>
-  Catches raported so far:
-  </h5>
+  <p>
+    <b>Catches raported so far:</b>
+  <p>
   <ul>
     {% for catch in species_catched %}
     <li>

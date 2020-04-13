@@ -3,7 +3,7 @@
 {% block body %}
 <form method="POST" action="{{ url_for('fish_save') }}">
   <table>
-    <h3>Delete the species...</h3>
+    <h1>Delete the species...</h1>
       <tr>
         <td>
           {{ form.delete.label }}
@@ -22,7 +22,7 @@
 
 <form method="POST" action="{{ url_for('fish_save') }}">
   <table>
-    <h3>...or change the species here!</h3>
+    <h1>...or change the species here!</h1>
       <tr>
         <td>
           {{ form.name.label }}

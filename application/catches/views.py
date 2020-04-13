@@ -76,7 +76,7 @@ def catches_save():
     form = CatchForm(request.form)
     c = Catch.query.get(catchId)
 
-    if catch.account_id != current_user.id and current_user.role < 2:
+    if c.account_id != current_user.id and current_user.role < 2:
         return loqin_manager.unauthorized()
 
     if form.delete.data:
