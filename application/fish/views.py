@@ -70,8 +70,8 @@ def fish_save():
         db.session().commit()
 
         return redirect(url_for("fish_index"))
-
-    if Fish.query.filter(Fish.name == form.name.data.lower().strip()).first():
+    #Current fish can exist already so check if count is more than one.
+    if Fish.query.filter(Fish.name == form.name.data.lower().strip()).count() > 1:
         fish = Fish.query.get(fishId)
         return render_template("fish/change_or_delete.html",
                                form=form,
