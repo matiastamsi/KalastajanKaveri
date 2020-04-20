@@ -14,7 +14,7 @@ def catches_index():
 @app.route("/catches/new/")
 @login_required(role="USER")
 def catches_form():
-    return render_template("catches/new.html", form = CatchForm())
+    return render_template("catches/new.html", form = CatchForm(), fishes = Fish.query.all())
 
 @app.route("/catches/", methods=["POST"])
 @login_required(role="USER")

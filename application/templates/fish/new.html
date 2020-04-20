@@ -1,103 +1,93 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1> Add a new species </h1>
 <form method="POST" action="{{ url_for('fish_create') }}">
-  <table>
-      <h1> Add a new species </h1>
-      <tr>
-        <td>
-          {{ form.name.label }}
-        </td>
-        <td>
-          {{ form.name }}
-        </td>
-        <td>
-	  <ul>
-            {% if error == "The species already exists!" %}
-            <li>{{ error }}</li>
-            {% endif %}
-	    {% for error in form.name.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.minimum_catch_size.label }}
-        </td>
-        <td>
-          {{ form.minimum_catch_size }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.minimum_catch_size.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.closed_season_starts_day.label }}
-        </td>
-        <td>
-          {{ form.closed_season_starts_day }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.closed_season_starts_day.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-         <td>
-          {{ form.closed_season_starts_month.label }}
-        </td>
-        <td>
-          {{ form.closed_season_starts_month }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.closed_season_starts_month.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.closed_season_ends_day.label }}
-        </td>
-        <td>
-          {{ form.closed_season_ends_day }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.closed_season_ends_day.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-        <td>
-          {{ form.closed_season_ends_month.label }}
-        </td>
-        <td>
-          {{ form.closed_season_ends_month }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.closed_season_ends_month.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="Add a new species"/>
-        </td>
-      </tr>
-  </form>
+  <div class="form-group">
+    <label for="formControlInput1">The name of the species</label>
+    <input class="form-control" id="name" name="name" placeholder="e.g. trout">
+  </div>
+  <td>
+    <ul>
+      {% if error == "The species already exists!" %}
+        <li>{{ error }}</li>
+      {% endif %}
+      {% for error in form.name.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="formControlInput1">The minimum catch size</label>
+    <input class="form-control" id="minimum_catch_size" name="minimum_catch_size" placeholder="e.g. 3.3">
+  </div>
+  <td>
+    <ul>
+      {% for error in form.minimum_catch_size.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Closed season starts day</label>
+    <select class="form-control" id="closed_season_starts_day" name="closed_season_starts_day">
+      {% for i in range(1,32) %}
+        <option>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.closed_season_starts_day.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Closed season starts month</label>
+    <select class="form-control" id="closed_season_starts_month" name="closed_season_starts_month">
+      {% for i in range(1,13) %}
+        <option>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.closed_season_starts_month.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Closed season ends day</label>
+    <select class="form-control" id="closed_season_ends_day" name="closed_season_ends_day">
+      {% for i in range(1,32) %}
+        <option>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.closed_season_ends_day.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Closed season ends month</label>
+    <select class="form-control" id="closed_season_ends_month" name="closed_season_ends_month">
+      {% for i in range(1,13) %}
+        <option>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.closed_season_ends_month.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}

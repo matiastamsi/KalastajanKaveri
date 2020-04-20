@@ -5,7 +5,7 @@ class FishForm(FlaskForm):
 
     name = StringField('Species', [validators.InputRequired()])
     minimum_catch_size = DecimalField('Minimum size to keep',
-                                      [validators.NumberRange(min=0.0, max=150.0)], places=2)
+                                      [validators.NumberRange(min=0.0, max=150.0)])
     closed_season_starts_day = IntegerField('Closed season starts: Day',
                                             [validators.NumberRange(min=1, max=31)])
     closed_season_starts_month = IntegerField("Month",

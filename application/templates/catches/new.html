@@ -1,24 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1> Add a new catch </h1>
 <form method="POST" action="{{ url_for('catches_create') }}">
-  <table>
-      <h1> Add a new catch </h1>
-      <tr>
-	<td>
-	  {{ form.species.label }}
-	</td>
-	<td>
-	  {{ form.species }}
-	</td>
-        <td>
-          <ul>
-          {% if error == "No such a species!" %}
-          <li>{{ error }}</li>
-          {% endif %}
-          </ul>
-        </td>
-      </tr>
+  <div class="form-group">
+    <label for="formControlSelect1">Select a species</label>
+    <select class="form-control" id="formControlSelect1">
+      {% for fish in fishes %}
+        <option>{{ fish.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
       <tr>
         <td>
           {{ form.lure_or_fly.label }}
