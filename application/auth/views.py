@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
-from application import app, db, bcrypt
+from application import app, db, bcrypt, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.newforms import SignUpForm
@@ -39,7 +39,7 @@ def auth_logout():
 def auth_form():
     return render_template("auth/new.html", form = SignUpForm())
 
-@app.route("/auth/", methods=["POST"])
+@app.route("/auth/create", methods=["POST"])
 def auth_create():
     form = SignUpForm(request.form)
 
@@ -63,5 +63,45 @@ def auth_create():
     db.session().commit()
 
     login_user(u)
+    return redirect(url_for("index"))
+
+userId = 0
+@app.route("/auth/change_or_delete/")
+@login_required
+def auth_change_or_delete():
+    global userId
+    userId = current_user.id
+    return render_template("auth/change_or_delete.html",form = SignUpForm(), u = current_user)
+
+@app.route("/auth/save", methods=["POST"])
+def auth_save():
+    form = SignUpForm(request.form)
+    if form.delete.data:
+        u = User.query.get(userId)
+        db.session().delete(u)
+        db.session().commit()
+        return redirect(url_for("index"))
+
+    if User.query.filter(User.name == form.name.data,
+                         User.username == form.username.data).count() > 1:
+        return render_template("auth/change_or_delete.html", form=form, u = current_user,
+                               errorName = "Name is already taken!",
+                               errorUsername = "Username is already taken!")
+    elif User.query.filter(User.name == form.name.data).count() > 1:
+        return render_template("auth/change_or_delete.html", form=form, u = current_user,
+                               errorName = "Name is already taken!")
+    elif User.query.filter(User.username == form.username.data).count() > 1:
+        return render_template("auth/change_or_delete.html", form=form, u = current_user,
+                               errorUsername = "Username is already taken!")
+
+    if not form.validate():
+        return render_template("auth/change_or_delete.html", form=form, u = current_user)
+
+    u = User.query.get(userId)
+    u.name = form.name.data
+    u.username = form.username.data
+    u.password = form.password.data
+    db.session().commit()
+
     return redirect(url_for("index"))
 
