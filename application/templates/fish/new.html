@@ -4,7 +4,7 @@
 <h1> Add a new species </h1>
 <form method="POST" action="{{ url_for('fish_create') }}">
   <div class="form-group">
-    <label for="formControlInput1">The name of the species</label>
+    <label for="name">The name of the species</label>
     <input class="form-control" id="name" name="name" placeholder="e.g. trout">
   </div>
   <td>
@@ -18,7 +18,7 @@
     </ul>
   </td>
   <div class="form-group">
-    <label for="formControlInput1">The minimum catch size</label>
+    <label for="minimum_catch_size">The minimum catch size</label>
     <input class="form-control" id="minimum_catch_size" name="minimum_catch_size" placeholder="e.g. 3.3">
   </div>
   <td>
@@ -29,7 +29,7 @@
     </ul>
   </td>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Closed season starts day</label>
+    <label for="closed_season_starts_day">Closed season starts day</label>
     <select class="form-control" id="closed_season_starts_day" name="closed_season_starts_day">
       {% for i in range(1,32) %}
         <option>{{ i }}</option>
@@ -44,7 +44,7 @@
     </ul>
   </td>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Closed season starts month</label>
+    <label for="closed_season_starts_month">Closed season starts month</label>
     <select class="form-control" id="closed_season_starts_month" name="closed_season_starts_month">
       {% for i in range(1,13) %}
         <option>{{ i }}</option>
@@ -59,7 +59,7 @@
     </ul>
   </td>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Closed season ends day</label>
+    <label for="closed_season_ends_day">Closed season ends day</label>
     <select class="form-control" id="closed_season_ends_day" name="closed_season_ends_day">
       {% for i in range(1,32) %}
         <option>{{ i }}</option>
@@ -74,7 +74,7 @@
     </ul>
   </td>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Closed season ends month</label>
+    <label for="closed_season_ends_month">Closed season ends month</label>
     <select class="form-control" id="closed_season_ends_month" name="closed_season_ends_month">
       {% for i in range(1,13) %}
         <option>{{ i }}</option>

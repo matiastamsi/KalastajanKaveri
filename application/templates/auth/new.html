@@ -2,17 +2,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+<h1>Sign up</h1>
 <form method="POST" action="{{ url_for('auth_create') }}">
-  <table>
-    <h1>Sign up</h1>
-    <tr>
-      <td>
-        {{ form.name.label }}
-      </td>
-      <td>
-        {{ form.name }}
-      </td>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" id="name" name="name">
+  </div>
       <td>
         <ul>
           {% if errorName == "Name is already taken!" %}
@@ -23,14 +18,10 @@
           {% endfor %}
         </ul>
       </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.username.label }}
-      </td>
-      <td>
-        {{ form.username }}
-      </td>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input class="form-control" id="username" name="username">
+  </div>
       <td>
 	<ul>
           {% if errorUsername == "Username is already taken!" %}
@@ -41,14 +32,10 @@
 	  {% endfor %}
 	</ul>
       </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.password.label }}
-      </td>
-      <td>
-        {{ form.password }}
-      </td>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
       <td>
         <ul>
           {% for error in form.password.errors %}
@@ -56,20 +43,11 @@
           {% endfor %}
         </ul>
       </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.confirm.label }}
-      </td>
-      <td>
-        {{ form.confirm }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Sign up"/>
-      </td>
-    </tr>
+  <div class="form-group">
+    <label for="confirm">Password again</label>
+    <input type="password" class="form-control" id="confirm" name="confirm">
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}
 
