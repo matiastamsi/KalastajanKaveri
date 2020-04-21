@@ -4,87 +4,71 @@
 <h1> Add a new catch </h1>
 <form method="POST" action="{{ url_for('catches_create') }}">
   <div class="form-group">
-    <label for="formControlSelect1">Select a species</label>
-    <select class="form-control" id="formControlSelect1">
+    <label for="species">Select a species</label>
+    <select class="form-control" id="species" name="species">
       {% for fish in fishes %}
         <option>{{ fish.name }}</option>
       {% endfor %}
     </select>
   </div>
-      <tr>
-        <td>
-          {{ form.lure_or_fly.label }}
-        </td>
-        <td>
-          {{ form.lure_or_fly }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.length.label }}
-        </td>
-        <td>
-          {{ form.length }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.length.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.weight.label }}
-        </td>
-        <td>
-          {{ form.weight }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.weight.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.spot.label }}
-        </td>
-        <td>
-          {{ form.spot }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.description.label }}
-        </td>
-        <td>
-          {{ form.description }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.description.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.private_or_public.label }}
-        </td>
-        <td>
-          {{ form.private_or_public }}
-        </td>
-      </tr>
-      <tr>
-	<td colspan="2">
-	  <input type="submit" value="Add a new catch"/>
-	</td>
-      </tr>
-  </form>
+  <div class="form-group">
+    <label for="lure_or_fly">Lure or fly</label>
+    <select class="form-control" id="lure_or_fly" name="lure_or_fly">
+      <option>lure</option>
+      <option>fly</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="length">Length (cm)</label>
+    <input class="form-control" id="length" name="length" placeholder="e.g. 42">
+  </div>
+  <td>
+    <ul>
+      {% for error in form.length.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="weight">Weight (kg)</label>
+    <input class="form-control" id="weight" name="weight" placeholder="e.g. 3.3">
+  </div>
+  <td>
+    <ul>
+    {% for error in form.weight.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="spot">Spot</label>
+    <input class="form-control" id="spot" name="spot" placeholder="e.g. name of the river or name of the lake">
+  </div>
+  <td>
+    <ul>
+      {% for error in form.spot.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Short description about the catch. E.g. what time was it etc."></textarea>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.description.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="private_or_public">Private or public</label>
+    <select class="form-control" id="private_or_public" name="private_or_public">
+      <option>private</option>
+      <option>public</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}

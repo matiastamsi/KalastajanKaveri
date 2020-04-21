@@ -22,13 +22,11 @@ def catches_create():
     form = CatchForm(request.form)
 
     if not form.validate():
-        return render_template("catches/new.html", form = form)
+        return render_template("catches/new.html", form = form, fishes = Fish.query.all())
 
     #Find the species from fish table.
     s_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
-    if s_id == None:
-        return render_template("catches/new.html", form = form,
-                               error = "No such a species!")
+
     c = Catch(
               form.lure_or_fly.data,
               form.length.data,
@@ -67,7 +65,8 @@ def catches_change_or_delete(catch_id):
         form.change_privacy('public')
     else:
         form.change_privacy('private')
-    return render_template("catches/change_or_delete.html", form = form, catch = catch)
+    f = Fish.query.all()
+    return render_template("catches/change_or_delete.html", form = form, catch = catch, fishes = f)
 
 @app.route("/catches/catchId", methods=["POST"])
 @login_required
@@ -84,11 +83,12 @@ def catches_save():
         db.session().commit()
 
         return redirect(url_for("catches_index"))
-
     if not form.validate():
-        return render_template("catches/change_or_delete.html", form = form, catch = c)
+        f = Fish.query.all()
+        return render_template("catches/change_or_delete.html", form = form, catch = c, fishes = f)
 
-    c.species = form.species.data.lower().strip()
+
+    c.species_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
     c.lure_or_fly = form.lure_or_fly.data
     c.length = form.length.data
     c.weight = form.weight.data

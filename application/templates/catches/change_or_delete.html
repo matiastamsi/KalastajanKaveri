@@ -2,110 +2,86 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+<h1>Delete the catch...</h1>
 <form method="POST" action="{{ url_for('catches_save') }}">
-  <table>
-    <h1>Delete the catch...</h1>
-      <tr>
-        <td>
-          {{ form.delete.label }}
-        </td>
-        <td>
-          {{ form.delete }}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="Delete"/>
-        </td>
-      </tr>
-  </table>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="delete" name="delete">
+    <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Delete</button>
 </form>
-
+<br></br>
+<h1> Change it here </h1>
 <form method="POST" action="{{ url_for('catches_save') }}">
-  <table>
-    <h1>...or change it here!</h1>
-      <tr>
-        <td>
-          {{ form.species.label }}
-        </td>
-        <td>
-          {{ form.species(placeholder = catch.find_name_based_on_id(id=catch.species_id)) }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.lure_or_fly.label }}
-        </td>
-        <td>
-          {{ form.lure_or_fly }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.length.label }}
-        </td>
-        <td>
-          {{ form.length(placeholder = catch.length) }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.length.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.weight.label }}
-        </td>
-        <td>
-          {{ form.weight(placeholder = catch.weight) }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.weight.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.spot.label }}
-        </td>
-        <td>
-          {{ form.spot(placeholder = catch.spot) }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.description.label }}
-        </td>
-        <td>
-          {{ form.description(placeholder = catch.description) }}
-        </td>
-        <td>
-	  <ul>
-	    {% for error in form.description.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.private_or_public.label }}
-        </td>
-        <td>
-          {{ form.private_or_public }}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="Save"/>
-        </td>
-      </tr>
+  <div class="form-group">
+    <label for="species">Select a species</label>
+    <select class="form-control" id="species" name="species">
+      <option>{{ catch.find_name_based_on_id(id=catch.species_id) }}</option>
+      {% for fish in fishes %}
+        <option>{{ fish.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="lure_or_fly">Lure or fly</label>
+    <select class="form-control" id="lure_or_fly" name="lure_or_fly">
+      <option>{{ catch.lure_or_fly }}</option>
+      <option>lure</option>
+      <option>fly</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="length">Length (cm)</label>
+    <input class="form-control" id="length" name="length" placeholder={{ catch.length }}>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.length.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="weight">Weight (kg)</label>
+    <input class="form-control" id="weight" name="weight" placeholder={{ catch.weight }}>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.weight.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="spot">Spot</label>
+    <input class="form-control" id="spot" name="spot" placeholder={{ catch.spot }}>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.spot.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3" placeholder={{ catch.description }}></textarea>
+  </div>
+  <td>
+    <ul>
+      {% for error in form.description.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
+  <div class="form-group">
+    <label for="private_or_public">Private or public</label>
+    <select class="form-control" id="private_or_public" name="private_or_public">
+      <option>{{ catch.private_or_public }}</option>
+      <option>private</option>
+      <option>public</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}
