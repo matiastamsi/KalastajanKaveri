@@ -41,6 +41,7 @@ def auth_form():
 
 @app.route("/auth/create", methods=["POST"])
 def auth_create():
+
     form = SignUpForm(request.form)
 
     if User.query.filter(User.name == form.name.data,
@@ -64,7 +65,7 @@ def auth_create():
 
     login_user(u)
     return redirect(url_for("index"))
-
+#Store the user's id for later processing.
 userId = 0
 @app.route("/auth/change_or_delete/")
 @login_required
@@ -74,14 +75,18 @@ def auth_change_or_delete():
     return render_template("auth/change_or_delete.html",form = SignUpForm(), u = current_user)
 
 @app.route("/auth/save", methods=["POST"])
+@loging_required
 def auth_save():
+
     form = SignUpForm(request.form)
+
     if form.delete.data:
         u = User.query.get(userId)
         db.session().delete(u)
         db.session().commit()
         return redirect(url_for("index"))
-
+    #When saving changes, in database is still the old version
+    #so let's check that there is no more than one match.
     if User.query.filter(User.name == form.name.data,
                          User.username == form.username.data).count() > 1:
         return render_template("auth/change_or_delete.html", form=form, u = current_user,
