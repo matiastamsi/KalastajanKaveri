@@ -75,7 +75,7 @@ def auth_change_or_delete():
     return render_template("auth/change_or_delete.html",form = SignUpForm(), u = current_user)
 
 @app.route("/auth/save", methods=["POST"])
-@loging_required
+@login_required
 def auth_save():
 
     form = SignUpForm(request.form)
