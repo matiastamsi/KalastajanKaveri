@@ -29,6 +29,14 @@ class Catch(Base):
         self.private_or_public = private_or_public
 
     @staticmethod
+    def find_fisher_based_on_id(id=0):
+        stmt = text("SELECT name FROM account WHERE id = :id").params(id=id)
+        res = db.engine.execute(stmt)
+	
+        for res in res:
+            return res[0]
+
+    @staticmethod
     def find_name_based_on_id(id=0):
         stmt = text("SELECT Fish.name FROM Fish WHERE Fish.id = :id").params(id=id)
         res = db.engine.execute(stmt)
