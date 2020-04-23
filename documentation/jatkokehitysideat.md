@@ -1,6 +1,6 @@
 # Jatkokehitysideat
 
-Sovellusta tehdessä tuli paljon erilaisia jatkokehitys ideoita, niin aivan uusiin ominaisuuksiin kuin myös tämänhetkisten ominaisuuksien parantamiseen/jatkokehittämiseen.
+Sovellusta tehdessä tuli paljon erilaisia jatkokehitysideoita, niin aivan uusiin ominaisuuksiin kuin myös tämänhetkisten ominaisuuksien parantamiseen/jatkokehittämiseen.
 
 ## Sosiaalinen aspekti
 
