@@ -9,7 +9,10 @@ from application.fish.models import Fish
 
 @app.route("/catches", methods=["GET"])
 def catches_index():
-    oC = Catch.query.filter(Catch.account_id == current_user.id)
+    if current_user.get_id() == None:
+        oC = []
+    else:
+        oC = Catch.query.filter(Catch.account_id == current_user.id)
     pC = Catch.query.filter(Catch.private_or_public == 'public')
     return render_template("catches/list.html", ownCatches = oC, publicCatches = pC)
 
