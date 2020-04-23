@@ -29,7 +29,7 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
 
 ## Dokumentaatio
 
-[Tietokantakaavio](https://github.com/matiastamsi/KalastajanKaveri/blob/master/images/database_diagram.png)
+[Tietokantakaavio](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/images/database_diagram.png)
 
 [User stories](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/User_stories.md)
 
