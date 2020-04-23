@@ -8,31 +8,35 @@ Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
 
 ## Toiminnot
 
-- saalismerkinnän lisäys (mm. kalalaji, pituus, paino, kalapaikka, päivämäärä sekä ajankohta,
-kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen)
+- Saalismerkinnän lisääminen (muotoa: kalalaji, saatu vieheellä vai perholla, pituus, paino, kalapaikka, päivämäärä,
+kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen). :heavy_check_mark:
+- Oman saalismerkinnän muokkaaminen tai poistaminen. :heavy_check_mark:
+- Saalismerkintöjen haku (omat ja julkiset):
+  - kaiken kaikkiaan (listaaminen). :heavy_check_mark:
+  - kalapaikan perusteella.
+  - päivämäärän perusteella.
+  - kalapaikan sekä päivämäärän perusteella.
+  - kalalajin perusteella.
+  - kalalajin ja kalapaikan perusteella.
+  - kalalajin ja päivämäärän perusteella.
+  - painavin saalis.
+  - pisin saalis.
 
-- saalismerkintöjen haku (omat ja julkiset):
+- Kalalajin lisäys (muotoa: kalalaji, alamitta, rauhoitusaika alkaa pvm. rauhoitusaika loppuu pvm.). :heavy_check_mark:
+- Kalalajien listaaminen. :heavy_check_mark:
+- Kalalajin haku.
 
-  - kaiken kaikkiaan (kahden vuoden ajalta)
-  - kalapaikan perusteella (kahden vuoden ajalta)
-  - päivämäärän perusteella
-  - kalapaikan sekä päivämäärän perusteella
-  - kalalajin perusteella (kahden vuoden ajalta)
-  - kalalajin ja kalapaikan perusteella (kahden vuoden ajalta)
-  - kalalajin ja päivämäärän perusteella
-  - painavin saalis
-  - pisin saalis
-
-- kalalajien rauhoitusaikojen ja alamittojen lisäys paikkakohtaisesti
-
-- kalalajien rauhoitusaikojen ja alamittojen haku (esim. paikkakohtaisesti) 
+- Rekisteröinti ja kirjautuminen. :heavy_check_mark:
+- Käyttäjätilin poistaminen. :heavy_check_mark:
 
 ## Dokumentaatio
 
-[Tietokantakaavio](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/images/database_diagram.png)
+[Tietokantarakenne](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/tietokantakuvaus.md)
 
 [User stories](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/User_stories.md)
 
 [Käyttöohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/kayttoohje.md)
 
 [Asennusohje](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/asennusohje.md)
+
+[Jatkokehitysideat](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/jatkokehitysideat.md)
