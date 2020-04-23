@@ -27,7 +27,7 @@ kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen). 
 - Kalalajin haku.
 
 - Rekisteröinti ja kirjautuminen. :heavy_check_mark:
-- Käyttäjätilin poistaminen. :heavy_check_mark:
+- Käyttäjätilin muokkaaminen tai poistaminen. :heavy_check_mark:
 
 ## Dokumentaatio
 
