@@ -2,27 +2,27 @@
 
 Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, kalastuksenvalvoja tms. Voi käyttäjä...
 
-- ... luoda uuden käyttäjätilin.
+- ... luoda uuden käyttäjätilin. :heavy_check_mark:
 
 INSERT INTO account (date_created, date_modified, name, username, password, role) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
 
-- ... muokata käyttäjätiliään.
+- ... muokata käyttäjätiliään. :heavy_check_mark:
 
 UPDATE account SET date_modified=CURRENT_TIMESTAMP, password=? WHERE account.id = ?
 
-- ... poistaa käyttäjätilinsä.
+- ... poistaa käyttäjätilinsä. :heavy_check_mark:
 
 DELETE FROM account WHERE account.id = ?
 
-- ... lisätä saalismerkinnän.
+- ... lisätä saalismerkinnän. :heavy_check_mark:
 
 INSERT INTO catch (date_created, date_modified, lure_or_fly, length, weight, spot, description, private_or_public, account_id, species_id, fisher) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 
-- ... muokata saalismerkintäänsä.
+- ... muokata saalismerkintäänsä. :heavy_check_mark:
 
 UPDATE catch SET date_modified=CURRENT_TIMESTAMP, length=?, weight=?, spot=?, description=? WHERE catch.id = ?
 
-- ... poistaa saalismerkintänsä.
+- ... poistaa saalismerkintänsä. :heavy_check_mark:
 
 DELETE FROM catch WHERE catch.id = ?
 
