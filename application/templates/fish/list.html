@@ -18,9 +18,18 @@
     {% if authenticated %}
     <tr>
       <td>{{ fish.name }}</td>
-      <td>{{ fish.minimum_catch_size }}</td>
-      <td>{{ fish.closed_season_starts }}</td>
-      <td>{{ fish.closed_season_ends }}</td>
+      {% if fish.minimum_catch_size == 0 %}
+        <td>None</td>
+      {% else %}
+        <td>{{ fish.minimum_catch_size }}</td>
+      {% endif %}
+      {% if fish.closed_season_starts == '0.0.' %}
+        <td>None</td>
+        <td>None</td>
+      {% else %}
+        <td>{{ fish.closed_season_starts }}</td>
+        <td>{{ fish.closed_season_ends }}</td>
+      {% endif %}
       <td>
         <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
           <input type="submit" value="Change or delete"/>
@@ -30,9 +39,19 @@
     {% else %}
     <tr>
       <td>{{ fish.name }}</td>
-      <td>{{ fish.minimum_catch_size }}</td>
-      <td>{{ fish.closed_season_starts }}</td>
-      <td>{{ fish.closed_season_ends }}</td>
+      {% if fish.minimum_catch_size == 0 %}
+        <td>None</td>
+      {% else %}
+        <td>{{ fish.minimum_catch_size }}</td>
+      {% endif %}
+      {% if fish.getDay(fish.closed_season_starts) == 0 %}
+        <td>None</td>
+        <td>None</td>
+      {% else %}
+        <td>{{ fish.closed_season_starts }}</td>
+        <td>{{ fish.closed_season_ends }}</td>
+      {% endif %}
+      <td>
     {% endif %}
     {% endfor %}
 </table>

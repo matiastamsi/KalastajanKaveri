@@ -19,7 +19,7 @@
   </td>
   <div class="form-group">
     <label for="minimum_catch_size">The minimum catch size</label>
-    <input class="form-control" id="minimum_catch_size" name="minimum_catch_size" placeholder="e.g. 3.3">
+    <input class="form-control" id="minimum_catch_size" name="minimum_catch_size" placeholder="eg. 50">
   </div>
   <td>
     <ul>
@@ -28,6 +28,11 @@
       {% endfor %}
     </ul>
   </td>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="noMinimumCatchSize" name="noMinimumCatchSize">
+    <label class="form-check-label" for="noMinimumCatchSize">No minimum catch size.</label>
+  </div>
+  <br></br>
   <div class="form-group">
     <label for="closed_season_starts_day">Closed season starts day</label>
     <select class="form-control" id="closed_season_starts_day" name="closed_season_starts_day">
@@ -88,6 +93,11 @@
       {% endfor %}
     </ul>
   </td>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="noClosedSeason" name="noClosedSeason">
+    <label class="form-check-label" for="noClosedSeason">No closed season.</label>
+  </div>
+  <br></br>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}

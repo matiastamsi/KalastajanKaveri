@@ -28,18 +28,19 @@ def fish_create():
     if Fish.query.filter(Fish.name == form.name.data.lower().strip()).first():
         return render_template("fish/new.html", form=form,
                                error = "The species already exists!")
+    minimumCatchSize = form.minimum_catch_size.data
+    closedSeasonStarts = (str(form.closed_season_starts_day.data) + '.'
+         + str(form.closed_season_starts_month.data) + '.')
+    closedSeasonEnds = (str(form.closed_season_ends_day.data) + '.'
+         + str(form.closed_season_ends_month.data) + '.')
 
-    if not form.validate():
-        return render_template("fish/new.html", form = form)
+    if form.noMinimumCatchSize.data:
+        minimumCatchSize = None
+    if form.noClosedSeason.data:
+        closedSeasonStarts = None
+        closedSeasonEnds = None
 
-    f = Fish(
-        form.name.data.lower().strip(),
-        form.minimum_catch_size.data,
-        (str(form.closed_season_starts_day.data) + '.'      #Transform the
-         + str(form.closed_season_starts_month.data) + '.'),#integer inputs
-        (str(form.closed_season_ends_day.data) + '.'        #to the (string) dates
-         + str(form.closed_season_ends_month.data) + '.'))  #("day.month.").
-
+    f = Fish(form.name.data.lower().strip(), minimumCatchSize, closedSeasonStarts, closedSeasonEnds)
     db.session().add(f)
     db.session().commit()
 
@@ -78,19 +79,23 @@ def fish_save():
                                fish=fish,
                                error = "The species already exists!")
 
-    if not form.validate():
-        fish = Fish.query.get(fishId)
-        return render_template("fish/change_or_delete.html",
-                               form = form,
-                               fish = fish)
+    minimumCatchSize = form.minimum_catch_size.data
+    closedSeasonStarts = (str(form.closed_season_starts_day.data) + '.'
+         + str(form.closed_season_starts_month.data) + '.')
+    closedSeasonEnds = (str(form.closed_season_ends_day.data) + '.'
+         + str(form.closed_season_ends_month.data) + '.')
+
+    if form.noMinimumCatchSize.data:
+        minimumCatchSize = None
+    if form.noClosedSeason.data:
+        closedSeasonStarts = None
+        closedSeasonEnds = None
 
     f = Fish.query.get(fishId)
-    f.name = form.name.data
-    f.minimum_catch_size = form.minimum_catch_size.data
-    f.closed_season_starts = (str(form.closed_season_starts_day.data) + '.' +
-                              str(form.closed_season_starts_month.data) + '.')
-    f.closed_season_ends = (str(form.closed_season_ends_day.data) + '.' +
-                            str(form.closed_season_ends_month.data) + '.')
+    f.name = form.name.data.lower().strip()
+    f.minimum_catch_size = minimumCatchSize
+    f.closed_season_starts = closedSeasonStarts
+    f.closed_season_ends = closedSeasonEnds
     db.session().commit()
 
     return redirect(url_for("fish_index"))

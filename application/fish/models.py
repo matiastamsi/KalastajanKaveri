@@ -6,9 +6,9 @@ from sqlalchemy.sql import text
 class Fish(Base):
 
     name = db.Column(db.String(144), nullable=False, unique=True)
-    minimum_catch_size = db.Column(db.Float, nullable=False)
-    closed_season_starts = db.Column(db.String, nullable=False)
-    closed_season_ends = db.Column(db.String, nullable=False)
+    minimum_catch_size = db.Column(db.Integer)
+    closed_season_starts = db.Column(db.String)
+    closed_season_ends = db.Column(db.String)
 
     catches = db.relationship("Catch", lazy=True)
     
