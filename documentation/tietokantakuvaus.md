@@ -24,9 +24,9 @@ CREATE TABLE fish (
 	date_created DATETIME, 
 	date_modified DATETIME, 
 	name VARCHAR(144) NOT NULL, 
-	minimum_catch_size FLOAT NOT NULL, 
-	closed_season_starts VARCHAR NOT NULL, 
-	closed_season_ends VARCHAR NOT NULL, 
+	minimum_catch_size INTEGER, 
+	closed_season_starts VARCHAR, 
+	closed_season_ends VARCHAR, 
 	PRIMARY KEY (id), 
 	UNIQUE (name)
 )
@@ -48,4 +48,3 @@ CREATE TABLE catch (
 	FOREIGN KEY(account_id) REFERENCES account (id), 
 	FOREIGN KEY(species_id) REFERENCES fish (id)
 )
-
