@@ -19,4 +19,8 @@ def search_form():
 @login_required(role="USER")
 def search_show():
     form = SearchForm(request.form)
+    return render_template("search/search.html",
+                           form = SearchForm(),
+                           fishes = Fish.query.all(), 
+                           catches = Catch.query.all())
 
