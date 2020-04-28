@@ -44,7 +44,7 @@
       {% else %}
         <td>{{ fish.minimum_catch_size }}</td>
       {% endif %}
-      {% if fish.getDay(fish.closed_season_starts) == 0 %}
+      {% if fish.closed_season_starts == '0.0.' %}
         <td>None</td>
         <td>None</td>
       {% else %}
