@@ -2,9 +2,11 @@
 
 {% block body %}
 <h1> Fish species </h1>
+
 <p> This information about fish species is provided by other fishers. If you spot a mistake or no more valid information, <b>please update it</b>. Every registered user can change or delete information.</p>
 
 <table class="table table-bordered table-dark">
+  <ul class="pagination">
   <thead>
     <tr>
       <th scope="col">Fish species</th>
@@ -54,5 +56,6 @@
       <td>
     {% endif %}
     {% endfor %}
+  </ul>
 </table>
 {% endblock %}

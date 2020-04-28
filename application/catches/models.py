@@ -55,4 +55,3 @@ class Catch(Base):
             response.append({"name":row[0], "count":row[1]})
 
         return response
-
