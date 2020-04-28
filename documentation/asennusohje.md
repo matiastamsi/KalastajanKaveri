@@ -1,13 +1,25 @@
 # Asennusohje
 
-### Toimiminen paikallisesti
+## Toiminta paikallisesti
 
 Saadakseen sovelluksen pyörimään paikallisesti on tehtävä seuraavat asiat.
 
-1. Mennä komentorivillä sovelluksen juurikansioon.
-2. Syöttää komento *source venv/bin/activate*.
-3. Ajaa ohjelma *python3 run.py*.
+1. Ladattava ohjelma omalle koneelle. Tämä onnistuu repositorion etusivulta _Clone or download_.
+2. Mennä komentorivillä sovelluksen juurikansioon.
+3. Syöttää komento:
 
-### Toiminta Herokussa
+        source venv/bin/activate
+        
+4. Ajaa ohjelma komennolla:
 
-Tarvitsee vain mennä tänne: [Sovellus Herokussa](https://quiet-stream-39899.herokuapp.com/)
+        python3 run.py
+
+## Toiminta Herokussa
+
+Sovellus on käytettävissä täällä: [Sovellus Herokussa](https://quiet-stream-39899.herokuapp.com/)
+
+## Riippuvuudet
+
+Riippuvuudet saa ladattua esimerkiksi pip:in avulla komennolla:
+
+      pip install -r requirements.txt
