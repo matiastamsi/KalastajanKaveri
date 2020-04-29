@@ -54,7 +54,7 @@ class Catch(Base):
         stmt = text("SELECT "
                     "(SELECT Fish.name "
                     "FROM Fish "
-                    "WHERE Fish.id = Catch.species_id), "
+                    "LEFT JOIN Catch ON Fish.id = Catch.species_id), "
                     "COUNT(Catch.species_id) as count "
                     "FROM Catch "
                     "LEFT JOIN Fish ON Fish.id = Catch.species_id "
