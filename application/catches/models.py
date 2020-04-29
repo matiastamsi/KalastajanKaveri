@@ -28,6 +28,10 @@ class Catch(Base):
         self.description = description
         self.private_or_public = private_or_public
 
+    def getDate(self):
+        d = self.date_created
+        return (str(d.day) + '.' + str(d.month) + '.' + str(d.year))
+
     @staticmethod
     def find_fisher_based_on_id(id=0):
         stmt = text("SELECT name FROM account WHERE id = :id").params(id=id)
@@ -47,7 +51,16 @@ class Catch(Base):
     @staticmethod
     def find_species_catched():
 
-        stmt = text("SELECT Fish.name, COUNT(Catch.species_id) FROM Fish LEFT JOIN Catch ON Fish.id = Catch.species_id GROUP BY Fish.name")
+        stmt = text("SELECT "
+                    "(SELECT Fish.name "
+                    "FROM Fish "
+                    "WHERE Fish.id = Catch.species_id), "
+                    "COUNT(Catch.species_id) as count "
+                    "FROM Catch "
+                    "LEFT JOIN Fish ON Fish.id = Catch.species_id "
+                    "GROUP BY Fish.name "
+                    "ORDER BY count DESC")
+
         res = db.engine.execute(stmt)
 
         response = []

@@ -7,13 +7,15 @@ from application.catches.forms import CatchForm
 from application.auth.models import User
 from application.fish.models import Fish
 
+from sqlalchemy import desc
+
 @app.route("/catches", methods=["GET"])
 def catches_index():
     if current_user.get_id() == None:
         oC = []
     else:
-        oC = Catch.query.filter(Catch.account_id == current_user.id)
-    pC = Catch.query.filter(Catch.private_or_public == 'public')
+        oC = Catch.query.filter(Catch.account_id == current_user.id).order_by(desc(Catch.date_created))
+    pC = Catch.query.filter(Catch.private_or_public == 'public').order_by(desc(Catch.date_created))
     return render_template("catches/list.html", ownCatches = oC, publicCatches = pC)
 
 @app.route("/catches/new/")

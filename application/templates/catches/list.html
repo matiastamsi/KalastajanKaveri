@@ -12,6 +12,7 @@
       <th scope="col">Weight (kg)</th>
       <th scope="col">Spot</th>
       <th scope="col">Description</th>
+      <th scope="col">Created</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
       <td>{{ catch.weight }}</td>
       <td>{{ catch.spot }}</td>
       <td>{{ catch.description }}</td>
+      <td>{{ catch.getDate() }}</td>
       <td>
         <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
           <input type="submit" value="Change or delete"/>
@@ -44,10 +46,11 @@
       <th scope="col">Weight (kg)</th>
       <th scope="col">Spot</th>
       <th scope="col">Description</th>
+      <th scope="col">Created</th>
       <th scope="col">Fisher</th>
     </tr>
   </thead>
-  </tbody>
+  <tbody>
     {% for catch in publicCatches %}
     <tr>
       <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
@@ -56,6 +59,7 @@
       <td>{{ catch.weight }}</td>
       <td>{{ catch.spot }}</td>
       <td>{{ catch.description }}</td>
+      <td>{{ catch.getDate() }}</td>
       <td>{{ catch.find_fisher_based_on_id(catch.account_id) }}</td>
     </tr>
     {% endfor %}

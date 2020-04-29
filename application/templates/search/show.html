@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1> Search results </h1>
+<table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Species</th>
+      <th scope="col">Lure or fly</th>
+      <th scope="col">Length (cm)</th>
+      <th scope="col">Weight (kg)</th>
+      <th scope="col">Spot</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created</th>
+      <th scope="col">Fisher</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for catch in catches %}
+    <tr>
+      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
+      <td>{{ catch.lure_or_fly }}</td>
+      <td>{{ catch.length }}</td>
+      <td>{{ catch.weight }}</td>
+      <td>{{ catch.spot }}</td>
+      <td>{{ catch.description }}</td>
+      <td>{{ catch.getDate() }}</td>
+      <td>{{ catch.find_fisher_based_on_id(catch.account_id) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
