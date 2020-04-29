@@ -8,8 +8,8 @@ class CatchForm(FlaskForm):
                               default='lure')
     length = DecimalField("Length", [validators.NumberRange(min=0.1, max=500.0)], places=2)
     weight = DecimalField("Weight", [validators.NumberRange(min=0.1, max=50.0)], places=2)
-    spot = StringField("Spot")
-    description = StringField("Description", [validators.Length(min=3, max=100)])
+    spot = StringField("Spot", [validators.Length(min=1, max=25)])
+    description = StringField("Description", [validators.Length(min=1, max=50)])
     private_or_public = SelectField("Private or public",
                                     choices=[('private', 'Private'),('public', 'Public')],
                                     default='private')

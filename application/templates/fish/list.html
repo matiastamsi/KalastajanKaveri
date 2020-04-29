@@ -3,7 +3,7 @@
 {% block body %}
 <h1> Fish species </h1>
 
-<p> This information about fish species is provided by other fishers. If you spot a mistake or no more valid information, <b>please update it</b>. Every registered user can change or delete information.</p>
+<p> This information about fish species is provided by other fishers. If you spot a mistake or no more valid information, <b>please update it</b>. Every <a href="{{ url_for('auth_form') }}">registered</a> user can change or delete information.</p>
 
 <table class="table table-bordered table-dark">
   <ul class="pagination">
@@ -34,7 +34,7 @@
       {% endif %}
       <td>
         <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
-          <input type="submit" value="Change or delete"/>
+          <button type="submit" class="btn btn-primary">Change or delete</button>
         </form>
       </td>
     </tr>

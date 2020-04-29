@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1> Own catches </h1>
-<p> You can see all of your catches. The other users can not see your private catches.</p>
+<p> You can see here all of your catches. The other users can not see your private catches.</p>
 <table class="table table-bordered table-dark">
   <thead>
     <tr>
@@ -27,7 +27,7 @@
       <td>{{ catch.getDate() }}</td>
       <td>
         <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
-          <input type="submit" value="Change or delete"/>
+          <button type="submit" class="btn btn-primary">Change or delete</button>
         </form>
       </td>
     </tr>
@@ -36,7 +36,7 @@
 </table>
 <br></br>
 <h1> Public catches </h1>
-<p> Here is public catches. If you have added a public catch, it will show in here as well.</p>
+<p> Here is public catches. After you add a public catch, it will show in here as well.</p>
 <table class="table table-bordered table-dark">
   <thead>
     <tr>
