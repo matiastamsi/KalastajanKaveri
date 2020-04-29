@@ -51,13 +51,10 @@ class Catch(Base):
     @staticmethod
     def find_species_catched():
 
-        stmt = text("SELECT "
-                    "(SELECT Fish.name "
-                    "FROM Fish "
-                    "LEFT JOIN Catch ON Fish.id = Catch.species_id), "
+        stmt = text("SELECT Fish.name, "
                     "COUNT(Catch.species_id) as count "
-                    "FROM Catch "
-                    "LEFT JOIN Fish ON Fish.id = Catch.species_id "
+                    "FROM Fish "
+                    "LEFT JOIN Catch ON Fish.id = Catch.species_id "
                     "GROUP BY Fish.name "
                     "ORDER BY count DESC")
 
