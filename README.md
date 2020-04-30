@@ -1,33 +1,36 @@
 # Fisher's Bestfriend
 
-Fisher's Bestfriend -sovelluksella jokainen kalastaja voi pitää kirjaa omista saaleistaan
+Fisher's Bestfriend:issä jokainen kalastaja voi pitää kirjaa omista saaleistaan
 sekä nähdä muiden jakamia saalismerkintöjä - jos he suinkaan haluavat paljastaa niitä!
 Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
+
+Lisäksi muun muassa kalalajien rauhoitukseen liittyvät tiedot ovat helposti saatavilla.
 
 [Sovellus Herokussa](https://quiet-stream-39899.herokuapp.com/)
 
 ## Toiminnot
 
-- Saalismerkinnän lisääminen (muotoa: kalalaji, saatu vieheellä vai perholla, pituus, paino, kalapaikka, päivämäärä,
-kuvaus sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen). :heavy_check_mark:
-- Oman saalismerkinnän muokkaaminen tai poistaminen. :heavy_check_mark:
-- Saalismerkintöjen haku (omat ja julkiset):
-  - kaiken kaikkiaan (listaaminen). :heavy_check_mark:
+- Saalismerkinnän lisääminen (muotoa: kalalaji, saatu vieheellä vai perholla, pituus, paino, kalapaikka, lyhyt
+kuvaus, lisäyksen päivämäärä sekä tieto siitä, että onko saalismerkintä julkinen vai yksityinen).
+- Oman saalismerkinnän muokkaaminen tai poistaminen.
+- Saalismerkintöjen listaaminen (omat ja julkiset):
+  - kaiken kaikkiaan (uusimmat ensin periaatteella).
+- Saalismerkintöjen haku:
+  - kaiken kaikkiaan (uusimmat ensin periaatteella).
   - kalapaikan perusteella.
-  - päivämäärän perusteella.
-  - kalapaikan sekä päivämäärän perusteella.
   - kalalajin perusteella.
   - kalalajin ja kalapaikan perusteella.
-  - kalalajin ja päivämäärän perusteella.
-  - painavin saalis.
-  - pisin saalis.
+  - kaiken kaikkiaan (suurin kala ensin periaatteella).
+  - kalapaikan perusteella (suurin kala ensin periaatteella).
+  - kalalajin perusteella (suurin kala ensin periaatteella).
+  - kalalajin ja kalapaikan perusteella (suurin kala ensin periaatteella).
 
-- Kalalajin lisäys (muotoa: kalalaji, alamitta, rauhoitusaika alkaa pvm. rauhoitusaika loppuu pvm.). :heavy_check_mark:
-- Kalalajien listaaminen. :heavy_check_mark:
-- Kalalajin haku.
+- Kalalajin lisäys (muotoa: kalalaji, alamitta, rauhoitusaika alkaa pvm., rauhoitusaika loppuu pvm.).
+- Kalalajien listaaminen.
+- Kalalajin muokkaaminen tai positaminen.
 
-- Rekisteröinti ja kirjautuminen. :heavy_check_mark:
-- Käyttäjätilin muokkaaminen tai poistaminen. :heavy_check_mark:
+- Rekisteröinti ja kirjautuminen.
+- Käyttäjätilin muokkaaminen tai poistaminen.
 
 ## Dokumentaatio
 
