@@ -32,6 +32,9 @@ kuvaus, lisäyksen päivämäärä sekä tieto siitä, että onko saalismerkint�
 - Rekisteröinti ja kirjautuminen.
 - Käyttäjätilin muokkaaminen tai poistaminen.
 
+- Etusivulla näyttää suurin saalis, joka raportoitu.
+- Etusivulla listata sivustolle raportoitujen kalojen määrä (kalalajin perusteella ja suurimmasta pienimpään).
+
 ## Dokumentaatio
 
 [Tietokantarakenne](https://github.com/matiastamsi/KalastajanKaveri/blob/master/documentation/tietokantakuvaus.md)
