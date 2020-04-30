@@ -45,35 +45,31 @@ def fish_create():
     db.session().commit()
 
     return redirect(url_for("fish_index"))
-#Variable to store the id of the fish in process.
-fishId = 0
 
-@app.route("/fish/<fish_id>/", methods=["POST"])
+@app.route("/fish/<fish_id>", methods=["POST"])
 @login_required(role="USER")
 def fish_change_or_delete(fish_id):
 
-    global fishId
-    fishId = fish_id
     fish = Fish.query.get(fish_id)
     return render_template("fish/change_or_delete.html",
                            form = FishForm(),
                            fish = fish)
 
-@app.route("/fish/fishId", methods=["POST"])
+@app.route("/fish/<fish_id>/", methods=["POST"])
 @login_required(role="USER")
-def fish_save():
+def fish_save(fish_id):
 
     form = FishForm(request.form)
 
     if form.delete.data:
-        f = Fish.query.get(fishId)
+        f = Fish.query.get(fish_id)
         db.session().delete(f)
         db.session().commit()
 
         return redirect(url_for("fish_index"))
     #Current fish can exist already so check if count is more than one.
     if Fish.query.filter(Fish.name == form.name.data.lower().strip()).count() > 1:
-        fish = Fish.query.get(fishId)
+        fish = Fish.query.get(fish_id)
         return render_template("fish/change_or_delete.html",
                                form=form,
                                fish=fish,
@@ -91,7 +87,7 @@ def fish_save():
         closedSeasonStarts = None
         closedSeasonEnds = None
 
-    f = Fish.query.get(fishId)
+    f = Fish.query.get(fish_id)
     f.name = form.name.data.lower().strip()
     f.minimum_catch_size = minimumCatchSize
     f.closed_season_starts = closedSeasonStarts

@@ -65,23 +65,24 @@ def auth_create():
 
     login_user(u)
     return redirect(url_for("index"))
-#Store the user's id for later processing.
-userId = 0
+
 @app.route("/auth/change_or_delete/")
 @login_required
 def auth_change_or_delete():
-    global userId
-    userId = current_user.id
+
     return render_template("auth/change_or_delete.html",form = SignUpForm(), u = current_user)
 
-@app.route("/auth/save", methods=["POST"])
+@app.route("/auth/save/<user_id>", methods=["POST"])
 @login_required
-def auth_save():
+def auth_save(user_id):
 
     form = SignUpForm(request.form)
 
     if form.delete.data:
-        u = User.query.get(userId)
+        u = User.query.get(user_id)
+        catches = Catch.query.filter(Catch.account_id==u.id)
+        for catch in catches:
+            db.session.delete(catch)
         db.session().delete(u)
         db.session().commit()
         return redirect(url_for("index"))
@@ -102,7 +103,7 @@ def auth_save():
     if not form.validate():
         return render_template("auth/change_or_delete.html", form=form, u = current_user)
 
-    u = User.query.get(userId)
+    u = User.query.get(user_id)
     u.name = form.name.data
     u.username = form.username.data
     u.password = form.password.data

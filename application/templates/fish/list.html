@@ -2,11 +2,8 @@
 
 {% block body %}
 <h1> Fish species </h1>
-
 <p> This information about fish species is provided by other fishers. If you spot a mistake or no more valid information, <b>please update it</b>. Every <a href="{{ url_for('auth_form') }}">registered</a> user can change or delete information.</p>
-
 <table class="table table-bordered table-dark">
-  <ul class="pagination">
   <thead>
     <tr>
       <th scope="col">Fish species</th>
@@ -17,45 +14,45 @@
   </thead>
   <tbody>
     {% for fish in fishes %}
-    {% if authenticated %}
-    <tr>
-      <td>{{ fish.name }}</td>
-      {% if fish.minimum_catch_size == 0 %}
-        <td>None</td>
-      {% else %}
-        <td>{{ fish.minimum_catch_size }}</td>
-      {% endif %}
-      {% if fish.closed_season_starts == '0.0.' %}
-        <td>None</td>
-        <td>None</td>
-      {% else %}
-        <td>{{ fish.closed_season_starts }}</td>
-        <td>{{ fish.closed_season_ends }}</td>
-      {% endif %}
-      <td>
-        <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
-          <button type="submit" class="btn btn-primary">Change or delete</button>
-        </form>
-      </td>
-    </tr>
+      {% if authenticated %}
+        <tr>
+          <td>{{ fish.name }}</td>
+        {% if fish.minimum_catch_size == 0 %}
+          <td>None</td>
+        {% else %}
+          <td>{{ fish.minimum_catch_size }}</td>
+        {% endif %}
+        {% if fish.closed_season_starts == '0.0.' %}
+          <td>None</td>
+          <td>None</td>
+        {% else %}
+          <td>{{ fish.closed_season_starts }}</td>
+          <td>{{ fish.closed_season_ends }}</td>
+        {% endif %}
+          <td>
+            <form method="POST" action="{{ url_for('fish_change_or_delete', fish_id = fish.id) }}">
+              <button type="submit" class="btn btn-primary">Change or delete</button>
+            </form>
+          </td>
+        </tr>
     {% else %}
-    <tr>
-      <td>{{ fish.name }}</td>
-      {% if fish.minimum_catch_size == 0 %}
-        <td>None</td>
-      {% else %}
-        <td>{{ fish.minimum_catch_size }}</td>
+      <tr>
+        <td>{{ fish.name }}</td>
+        {% if fish.minimum_catch_size == 0 %}
+          <td>None</td>
+        {% else %}
+          <td>{{ fish.minimum_catch_size }}</td>
+        {% endif %}
+        {% if fish.closed_season_starts == '0.0.' %}
+          <td>None</td>
+          <td>None</td>
+        {% else %}
+          <td>{{ fish.closed_season_starts }}</td>
+          <td>{{ fish.closed_season_ends }}</td>
+        {% endif %}
       {% endif %}
-      {% if fish.closed_season_starts == '0.0.' %}
-        <td>None</td>
-        <td>None</td>
-      {% else %}
-        <td>{{ fish.closed_season_starts }}</td>
-        <td>{{ fish.closed_season_ends }}</td>
-      {% endif %}
-      <td>
-    {% endif %}
     {% endfor %}
-  </ul>
+  </tbody>
+<br></br>
 </table>
 {% endblock %}

@@ -2,18 +2,18 @@
 
 {% block body %}
 <h1> Delete the species </h1>
-<form method="POST" action="{{ url_for('fish_save') }}">
+<form method="POST" action="{{ url_for('fish_save', fish_id = fish.id) }}">
   <br>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="delete" name="delete">
-    <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
-  </div>
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="delete" name="delete">
+      <label class="custom-control-label" for="delete">I agree deleting it permanently.</label>
+    </div>
   </br>
   <button type="submit" class="btn btn-primary">Delete</button>
 </form>
 <br></br>
 <h1> Change it here </h1>
-<form method="POST" action="{{ url_for('fish_save') }}">
+<form method="POST" action="{{ url_for('fish_save', fish_id = fish.id) }}">
   <div class="form-group">
     <label for="name">The name of the species</label>
     <input class="form-control" id="name" name="name" placeholder= {{ fish.name }}>
@@ -134,8 +134,10 @@
       <label class="custom-control-label" for="noClosedSeason">No closed season.</label>
     </div>
   {% endif %}
-  <br></br>
-  <button type="submit" class="btn btn-primary">Change</button>
+  <br>
+    <button type="submit" class="btn btn-primary">Change</button>
+  </br>
+<br></br>
 </form>
 {% endblock %}
 

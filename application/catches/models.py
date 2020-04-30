@@ -77,4 +77,7 @@ class Catch(Base):
         res = db.engine.execute(stmt)
 
         for row in res:
-            return (row[0] + ", as heavy as " + str(row[1]) + " kg and lucky fisher was " + row[2] + "!")
+            if row[0] == None or row[1] == None or row[2] == None:
+                return None
+            else:
+                return (row[0] + ", as heavy as " + str(row[1]) + " kg and the lucky fisher was " + row[2] + "!")

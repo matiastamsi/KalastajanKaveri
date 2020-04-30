@@ -3,18 +3,18 @@
 
 {% block body %}
 <h1>Delete the catch...</h1>
-<form method="POST" action="{{ url_for('catches_save') }}">
+<form method="POST" action="{{ url_for('catches_save', catch_id = catch.id) }}">
   <br>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="delete" name="delete">
-    <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
-  </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="delete" name="delete">
+      <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
+    </div>
   </br>
   <button type="submit" class="btn btn-primary">Delete</button>
 </form>
 <br></br>
 <h1> Change it here </h1>
-<form method="POST" action="{{ url_for('catches_save') }}">
+<form method="POST" action="{{ url_for('catches_save', catch_id = catch.id) }}">
   <div class="form-group">
     <label for="species">Select a species</label>
     <select class="form-control" id="species" name="species">
@@ -84,6 +84,8 @@
       <option>public</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary">Change</button>
+  <br>
+    <button type="submit" class="btn btn-primary">Change</button>
+  </br>
 </form>
 {% endblock %}

@@ -17,20 +17,20 @@
   </thead>
   <tbody>
     {% for catch in ownCatches %}
-    <tr>
-      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
-      <td>{{ catch.lure_or_fly }}</td>
-      <td>{{ catch.length }}</td>
-      <td>{{ catch.weight }}</td>
-      <td>{{ catch.spot }}</td>
-      <td>{{ catch.description }}</td>
-      <td>{{ catch.getDate() }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
-          <button type="submit" class="btn btn-primary">Change or delete</button>
-        </form>
-      </td>
-    </tr>
+      <tr>
+        <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
+        <td>{{ catch.lure_or_fly }}</td>
+        <td>{{ catch.length }}</td>
+        <td>{{ catch.weight }}</td>
+        <td>{{ catch.spot }}</td>
+        <td>{{ catch.description }}</td>
+        <td>{{ catch.getDate() }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('catches_change_or_delete', catch_id = catch.id) }}">
+            <button type="submit" class="btn btn-primary">Change or delete</button>
+          </form>
+        </td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>
@@ -52,17 +52,18 @@
   </thead>
   <tbody>
     {% for catch in publicCatches %}
-    <tr>
-      <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
-      <td>{{ catch.lure_or_fly }}</td>
-      <td>{{ catch.length }}</td>
-      <td>{{ catch.weight }}</td>
-      <td>{{ catch.spot }}</td>
-      <td>{{ catch.description }}</td>
-      <td>{{ catch.getDate() }}</td>
-      <td>{{ catch.find_fisher_based_on_id(catch.account_id) }}</td>
-    </tr>
+      <tr>
+        <td>{{ catch.find_name_based_on_id(catch.species_id) }}</td>
+        <td>{{ catch.lure_or_fly }}</td>
+        <td>{{ catch.length }}</td>
+        <td>{{ catch.weight }}</td>
+        <td>{{ catch.spot }}</td>
+        <td>{{ catch.description }}</td>
+        <td>{{ catch.getDate() }}</td>
+        <td>{{ catch.find_fisher_based_on_id(catch.account_id) }}</td>
+      </tr>
     {% endfor %}
   </tbody>
+  <br></br>
 </table>
 {% endblock %}

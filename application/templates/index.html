@@ -2,30 +2,23 @@
 
 {% block body %}
 <div class="text-center">
-  <h1>
-    Welcome to Fisher's Bestfriend!
-  </h1>
-  <p>
-  If you see something in the picture below, you came to the right place.
-  </p>
+  <h1>Welcome to Fisher's Bestfriend!</h1>
+  <p>If you see something in the picture below, you came to the right place.</p>
   <br></br>
   <img src="https://raw.githubusercontent.com/matiastamsi/KalastajanKaveri/master/application/images/fish.png">
-
-  {% if species_catched is defined %}
-  <p>
-    Navigate from the top to see more, but here is a little taste of the activity on the site.
-  </p>
-  <p>The biggest fish raported:</p>
-    <p><li>{{ biggest_catch }}</li></p>
-  <p>Catches raported so far:</p>
-  <ul>
-    {% for catch in species_catched %}
-    <li>
-      {{ catch.name }}: {{ catch.count }}
-    </li>
-    {% endfor %}
-  </ul>
+  {% if biggest_catch != None %}
+    <h2>The biggest fish raported</h2>
+    <p>
+      <li>{{ biggest_catch }}</li>
+    </p>
+    <h2>Catches raported so far</h2>
+    <ul>
+      {% for catch in species_catched %}
+        <li>{{ catch.name }}: {{ catch.count }}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
+  <br></br>
 </div>
 {% endblock %}
 

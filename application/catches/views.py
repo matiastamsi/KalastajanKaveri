@@ -48,15 +48,11 @@ def catches_create():
     db.session().commit()
 
     return redirect(url_for("catches_index"))
-#Variable used to store the id of the catch in the processing. 
-catchId = 0
 
-@app.route("/catches/<catch_id>/", methods=["POST"])
+@app.route("/catches/<catch_id>", methods=["POST"])
 @login_required
 def catches_change_or_delete(catch_id):
 
-    global catchId
-    catchId = catch_id
     catch = Catch.query.get(catch_id)
     #Check that catch is user's own catch or current user has admin/owner role.
     if catch.account_id != current_user.id and current_user.role < 2:
@@ -75,12 +71,12 @@ def catches_change_or_delete(catch_id):
     f = Fish.query.all()
     return render_template("catches/change_or_delete.html", form = form, catch = catch, fishes = f)
 
-@app.route("/catches/catchId", methods=["POST"])
+@app.route("/catches/<catch_id>/", methods=["POST"])
 @login_required
-def catches_save():
+def catches_save(catch_id):
 
     form = CatchForm(request.form)
-    c = Catch.query.get(catchId)
+    c = Catch.query.get(catch_id)
 
     if c.account_id != current_user.id and current_user.role < 2:
         return loqin_manager.unauthorized()

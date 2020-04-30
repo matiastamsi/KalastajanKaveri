@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block body %}
@@ -19,9 +18,9 @@
     <select class="form-control" id="spot" name="spot">
       <option>All</option>
       {% for catch in catches %}
-      {% if catch.private_or_public == 'public' %}
-        <option>{{ catch.spot }}</option>
-      {% endif %}
+        {% if catch.private_or_public == 'public' %}
+          <option>{{ catch.spot }}</option>
+        {% endif %}
       {% endfor %}
     </select>
   </div>
@@ -29,7 +28,8 @@
     <input type="checkbox" class="form-check-input" id="orderBySize" name="orderBySize">
     <label class="form-check-label" for="orderBySIze">Order primarily by <b>weight</b> and secondarily by <b>length</b>.</label>
   </div>
-  <br></br>
-  <button type="submit" class="btn btn-primary">Search</button>
+  <br>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </br>
 </form>
 {% endblock %}

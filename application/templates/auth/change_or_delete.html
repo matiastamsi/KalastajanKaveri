@@ -3,62 +3,63 @@
 
 {% block body %}
 <h1> Delete the account </h1>
-<form method="POST" action="{{ url_for('auth_save') }}">
+<form method="POST" action="{{ url_for('auth_save', user_id = u.id) }}">
   <br>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="delete" name="delete">
-    <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
-  </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="delete" name="delete">
+      <label class="form-check-label" for="delete">I agree deleting it permanently.</label>
+    </div>
   </br>
   <button type="submit" class="btn btn-primary">Delete</button>
 </form>
 <br></br>
-
 <h1>Change it here</h1>
-<form method="POST" action="{{ url_for('auth_save') }}">
+<form method="POST" action="{{ url_for('auth_save', user_id = u.id) }}">
   <div class="form-group">
     <label for="name">Name</label>
     <input class="form-control" id="name" name="name">
   </div>
-      <td>
-        <ul>
-          {% if errorName == "Name is already taken!" %}
-          <li>{{ errorName }}</li>
-          {% endif %}
-          {% for error in form.name.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
+  <td>
+    <ul>
+      {% if errorName == "Name is already taken!" %}
+        <li>{{ errorName }}</li>
+      {% endif %}
+      {% for error in form.name.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </td>
   <div class="form-group">
     <label for="username">Username</label>
     <input class="form-control" id="username" name="username" placeholder={{ u.username }}>
   </div>
-      <td>
-	<ul>
-          {% if errorUsername == "Username is already taken!" %}
+    <td>
+      <ul>
+        {% if errorUsername == "Username is already taken!" %}
           <li>{{ errorUsername }}</li>
-          {% endif %}
-	  {% for error in form.username.errors %}
+        {% endif %}
+	{% for error in form.username.errors %}
 	  <li>{{ error }}</li>
-	  {% endfor %}
-	</ul>
-      </td>
+	{% endfor %}
+      </ul>
+    </td>
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password">
   </div>
-      <td>
-        <ul>
-          {% for error in form.password.errors %}
+    <td>
+      <ul>
+        {% for error in form.password.errors %}
           <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
+        {% endfor %}
+      </ul>
+    </td>
   <div class="form-group">
     <label for="confirm">Password again</label>
     <input type="password" class="form-control" id="confirm" name="confirm">
   </div>
+  <br>
     <button type="submit" class="btn btn-primary">Change</button>
+  </br>
 </form>
 {% endblock %}
