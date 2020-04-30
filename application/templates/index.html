@@ -2,16 +2,16 @@
 
 {% block body %}
 <div class="text-center">
-  <h1>Welcome to Fisher's Bestfriend!</h1>
+  <h1>Welcome to Fisher's best friend!</h1>
   <p>If you see something in the picture below, you came to the right place.</p>
   <br></br>
   <img src="https://raw.githubusercontent.com/matiastamsi/KalastajanKaveri/master/application/images/fish.png">
   {% if biggest_catch != None %}
-    <h2>The biggest fish raported</h2>
+    <h2>The biggest fish reported</h2>
     <p>
       <p>{{ biggest_catch }}</p>
     </p>
-    <h2>Catches raported so far</h2>
+    <h2>Catches reported so far</h2>
     <ul>
       {% for catch in species_catched %}
         <p>{{ catch.name }}: {{ catch.count }}</p>
