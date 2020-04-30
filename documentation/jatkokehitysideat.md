@@ -11,6 +11,7 @@ Sovellusta tehdessä tuli paljon erilaisia jatkokehitysideoita, niin aivan uusii
 
 ## Toiminnallisuuksia
 
+- Tuloksien sivutus.
 - Kuvien lisääminen kalasaalismerkintään (ns. todiste).
 - Eri käyttäjäroolien toiminnallisuuksien pidemmälle vieminen.
 - Saalismerkintöjen listaamisen rajoittaminen käyttäjän valitsemalle aikavälille (vuoden, kuukauden ja päivän tasolla).
