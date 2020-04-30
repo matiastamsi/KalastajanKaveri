@@ -78,3 +78,11 @@ Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, ka
 
       //Edellä mainittuihin saalismerkintöjen hakuihin lisätään perään vain:
       ... ORDER BY catch.weight DESC, catch.length DESC
+
+Saalismerkintöjen listausoperaatioissa suoritetaan myös kysely kalalajin nimestä sekä julkisten saalismerkintöjen kohdalla kalastajan nimestä. Nämä ovat myös toteutettu __raakoina SQL-kyselyinä__.
+
+      //Kalalajin nimi id:n perusteella
+      SELECT Fish.name FROM Fish WHERE Fish.id = ?
+
+      //Kalastajan nimi id:n perusteella
+      SELECT name FROM account WHERE id = ?
