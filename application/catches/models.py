@@ -65,3 +65,16 @@ class Catch(Base):
             response.append({"name":row[0], "count":row[1]})
 
         return response
+
+    @staticmethod
+    def find_biggest_catch():
+        stmt = text("SELECT Fish.name, Catch.weight, account.name "
+                    "FROM Catch "
+                    "LEFT JOIN Fish ON Catch.species_id == Fish.id "
+                    "LEFT JOIN account ON Catch.account_id = account.id "
+                    "WHERE Catch.private_or_public ='public' "                  
+                    "ORDER BY Catch.weight DESC").params(id=id)
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            return (row[0] + ", as heavy as " + str(row[1]) + " kg and lucky fisher was " + row[2] + "!")
