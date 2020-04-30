@@ -6,10 +6,9 @@ class SignUpForm(FlaskForm):
     username = StringField('Username', [validators.Length(min=8, max=20)])
     password = PasswordField('New Password', [validators.Length(min=10), validators.EqualTo('confirm')])
     confirm  = PasswordField('Repeat Password')
-
     #Boolean value to message whether
     #the account is going to be deleted.
-    delete = BooleanField("I agree deleting the account permanently.")
+    delete = BooleanField()
 
     class Meta:
         csrf = False

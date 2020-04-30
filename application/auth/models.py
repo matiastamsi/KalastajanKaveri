@@ -3,7 +3,8 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 
-class User(Base):
+class User(Base): #User gets id, date_created and date_modified
+                  #from the Base.
 
     __tablename__ = "account"
 
@@ -19,7 +20,7 @@ class User(Base):
         self.name = name
         self.username = username
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
-        self.role = 1 #New user gets user priviledges at first
+        self.role = 1 #New user gets user priviledges at first.
 
     def get_id(self):
         return self.id

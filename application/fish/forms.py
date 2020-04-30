@@ -18,10 +18,10 @@ class FishForm(FlaskForm):
     #the fish species is going to be deleted.
     delete = BooleanField("I agree deleting this species permanently.", default=False)
     #Boolean value to message whether
-    #give 'None' value to size.
+    #give 'None' value to minimum catch size.
     noMinimumCatchSize = BooleanField("No minimum catch size.", default=False)
     #Boolean value to message whether
-    #give 'None' values to dates.
+    #give 'None' values to closed season dates.
     noClosedSeason = BooleanField("No closed season.", default=False)
     
     class Meta:

@@ -21,7 +21,9 @@ def catches_index():
 @app.route("/catches/new/")
 @login_required(role="USER")
 def catches_form():
-    return render_template("catches/new.html", form = CatchForm(), fishes = Fish.query.all())
+    return render_template("catches/new.html",
+                           form = CatchForm(),
+                           fishes = Fish.query.all())
 
 @app.route("/catches/", methods=["POST"])
 @login_required(role="USER")
@@ -29,10 +31,12 @@ def catches_create():
     form = CatchForm(request.form)
 
     if not form.validate():
-        return render_template("catches/new.html", form = form, fishes = Fish.query.all())
+        return render_template("catches/new.html",
+                               form = form,
+                               fishes = Fish.query.all())
 
     #Find the species from fish table.
-    s_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
+    s_id = Fish.find_id_based_on_name(name=form.species.data.lower().strip())
 
     c = Catch(
               form.lure_or_fly.data,
@@ -43,7 +47,6 @@ def catches_create():
               form.private_or_public.data)
     c.species_id = s_id
     c.account_id = current_user.id
-    c.fisher = current_user.name
     db.session().add(c)
     db.session().commit()
 
@@ -69,7 +72,8 @@ def catches_change_or_delete(catch_id):
     else:
         form.change_privacy('private')
     f = Fish.query.all()
-    return render_template("catches/change_or_delete.html", form = form, catch = catch, fishes = f)
+    return render_template("catches/change_or_delete.html",
+                           form = form, catch = catch, fishes = f)
 
 @app.route("/catches/<catch_id>/", methods=["POST"])
 @login_required
@@ -86,10 +90,11 @@ def catches_save(catch_id):
         db.session().commit()
 
         return redirect(url_for("catches_index"))
+
     if not form.validate():
         f = Fish.query.all()
-        return render_template("catches/change_or_delete.html", form = form, catch = c, fishes = f)
-
+        return render_template("catches/change_or_delete.html",
+                               form = form, catch = c, fishes = f)
 
     c.species_id = Fish.find_id_based_on_name(name= form.species.data.lower().strip())
     c.lure_or_fly = form.lure_or_fly.data
@@ -99,7 +104,6 @@ def catches_save(catch_id):
     c.description = form.description.data
     c.private_or_public = form.private_or_public.data
     c.account_id = current_user.id
-    c.fisher = current_user.name
     db.session().commit()
 
     return redirect(url_for("catches_index"))

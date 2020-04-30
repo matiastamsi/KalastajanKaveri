@@ -11,9 +11,8 @@ from application.catches.models import Catch
 def auth_login():
     if request.method == "GET":
         return render_template("auth/loginform.html", form = LoginForm())
-
+    #"POST":
     form = LoginForm(request.form)
-    
     found_user = User.query.filter_by(username = form.data['username']).first()
 
     if not found_user:
@@ -22,7 +21,6 @@ def auth_login():
     #Use bcrypt's method "check_password_hash" to check if password is correct.
     authenticated_user = bcrypt.check_password_hash(found_user.password,
                                                     form.data['password'])
-
     if authenticated_user:
         user = User.query.filter(User.username == form.username.data).first()
         login_user(user)
@@ -65,13 +63,15 @@ def auth_create():
     db.session().commit()
 
     login_user(u)
+
     return redirect(url_for("index"))
 
 @app.route("/auth/change_or_delete/")
 @login_required
 def auth_change_or_delete():
-
-    return render_template("auth/change_or_delete.html",form = SignUpForm(), u = current_user)
+    return render_template("auth/change_or_delete.html",
+                           form = SignUpForm(),
+                           u = current_user)
 
 @app.route("/auth/save/<user_id>", methods=["POST"])
 @login_required
@@ -82,7 +82,7 @@ def auth_save(user_id):
     if form.delete.data:
         u = User.query.get(user_id)
         catches = Catch.query.filter(Catch.account_id==u.id)
-        for catch in catches:
+        for catch in catches: #Delete also all user's catches.
             db.session.delete(catch)
         db.session().delete(u)
         db.session().commit()
@@ -102,7 +102,9 @@ def auth_save(user_id):
                                errorUsername = "Username is already taken!")
 
     if not form.validate():
-        return render_template("auth/change_or_delete.html", form=form, u = current_user)
+        return render_template("auth/change_or_delete.html",
+                               form=form,
+                               u = current_user)
 
     u = User.query.get(user_id)
     u.name = form.name.data

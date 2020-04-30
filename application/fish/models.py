@@ -3,17 +3,17 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
-class Fish(Base):
+class Fish(Base): #Fish gets id, date_created and date_modified
+                  #from the Base.
 
     name = db.Column(db.String(144), nullable=False, unique=True)
     minimum_catch_size = db.Column(db.Integer)
     closed_season_starts = db.Column(db.String)
     closed_season_ends = db.Column(db.String)
-
+    #Fish is aware of catches.
     catches = db.relationship("Catch", lazy=True)
     
     def __init__(self, name, minimum_catch_size, closed_season_starts, closed_season_ends):
-
         self.name = name
         self.minimum_catch_size = minimum_catch_size
         self.closed_season_starts = closed_season_starts
@@ -21,15 +21,18 @@ class Fish(Base):
 
     @staticmethod
     def find_id_based_on_name(name=0):
-        stmt = text("SELECT Fish.id FROM Fish WHERE Fish.name = :name").params(name=name)
+        stmt = text("SELECT Fish.id "
+                    "FROM Fish "
+                    "WHERE Fish.name = :name").params(name=name)
         res = db.engine.execute(stmt)
-	
-        for res in res:
-            return res.id
+        for res in res:    #If resultset is not empty
+            return res.id  #return the first id (no more than
+                           #one unique named fish).
 
     #Function to get only day.
     def getDay(self, dateToSplit):
         return dateToSplit.split('.')[0]
+
     #Function to get only month.
     def getMonth(self, dateToSplit):
         return dateToSplit.split('.')[1]

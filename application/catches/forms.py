@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, DecimalField, BooleanField, validators
 
 class CatchForm(FlaskForm):
-    species = StringField("Species")
+
+    species = StringField("Species") #Validated later.
     lure_or_fly = SelectField("Lure or Fly",
                               choices=[('lure', 'Lure'), ('fly', 'Fly')],
                               default='lure')
@@ -20,6 +21,7 @@ class CatchForm(FlaskForm):
     def change_choice(self, newChoice):
         self.lure_or_fly.default = newChoice
         self.process()
+
     #Method is used to set SelectField's default choice to match current/old choice.
     def change_privacy(self, newValue):
         self.private_or_public.default = newValue
