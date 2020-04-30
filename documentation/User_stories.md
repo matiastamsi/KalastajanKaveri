@@ -2,7 +2,11 @@
 
 Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, kalastuksenvalvoja tms. Voi käyttäjä...
 
-- ... tarkastella etusivulla sivustolle raportoitujen napattujen kalojen määrää (kalalaji kohtaisesti ja järjestetty suurimmasta pienimpään). __Raaka SQL-kysely__.
+- ... tarkastella etusivulla painavinta sivustolle lisättyä saalista (kalalaji, paino ja kalastaja). __Raaka SQL-yhteenvetokysely__.
+
+      SELECT Fish.name, Catch.weight, account.name FROM Catch LEFT JOIN Fish ON Catch.species_id == Fish.id LEFT JOIN account ON Catch.account_id = account.id WHERE Catch.private_or_public ='public' ORDER BY Catch.weight DESC
+
+- ... tarkastella etusivulla sivustolle raportoitujen napattujen kalojen määrää (kalalaji kohtaisesti ja järjestetty suurimmasta pienimpään). __Raaka SQL-yhteenvetokysely__.
 
       SELECT Fish.name, COUNT(Catch.species_id) as count FROM Fish LEFT JOIN Catch ON Fish.id = Catch.species_id GROUP BY Fish.name ORDER BY count DESC
 
@@ -79,7 +83,7 @@ Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, ka
       //Edellä mainittuihin saalismerkintöjen hakuihin lisätään perään vain:
       ... ORDER BY catch.weight DESC, catch.length DESC
 
-Saalismerkintöjen listausoperaatioissa suoritetaan myös kysely kalalajin nimestä sekä julkisten saalismerkintöjen kohdalla kalastajan nimestä. Nämä ovat myös toteutettu __raakoina SQL-kyselyinä__.
+Saalismerkintöjen listausoperaatioissa suoritetaan myös kysely kalalajin nimestä sekä julkisten saalismerkintöjen kohdalla kalastajan nimestä. Nämä ovat toteutettu __raakoina SQL-kyselyinä__.
 
       //Kalalajin nimi id:n perusteella
       SELECT Fish.name FROM Fish WHERE Fish.id = ?
