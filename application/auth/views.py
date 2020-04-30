@@ -5,6 +5,7 @@ from application import app, db, bcrypt, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.newforms import SignUpForm
+from application.catches.models import Catch
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
