@@ -70,7 +70,7 @@ class Catch(Base):
     def find_biggest_catch():
         stmt = text("SELECT Fish.name, Catch.weight, account.name "
                     "FROM Catch "
-                    "LEFT JOIN Fish ON Catch.species_id == Fish.id "
+                    "LEFT JOIN Fish ON Catch.species_id = Fish.id "
                     "LEFT JOIN account ON Catch.account_id = account.id "
                     "WHERE Catch.private_or_public ='public' "                  
                     "ORDER BY Catch.weight DESC").params(id=id)
