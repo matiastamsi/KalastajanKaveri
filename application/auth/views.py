@@ -57,7 +57,7 @@ def auth_create():
 
     if not form.validate():
         return render_template("auth/new.html", form=form)
-
+    #Create a new user.
     u = User(form.name.data, form.username.data, form.password.data)
     db.session().add(u)
     db.session().commit()
@@ -82,11 +82,15 @@ def auth_save(user_id):
     if form.delete.data:
         u = User.query.get(user_id)
         catches = Catch.query.filter(Catch.account_id==u.id)
-        for catch in catches: #Delete also all user's catches.
-            db.session.delete(catch)
+
+        for catch in catches:
+            db.session.delete(catch) #Delete all user's catches.
+
         db.session().delete(u)
         db.session().commit()
+
         return redirect(url_for("index"))
+
     #When saving changes, in database is still the old version
     #so let's check that there is no more than one match.
     if User.query.filter(User.name == form.name.data,
@@ -105,7 +109,7 @@ def auth_save(user_id):
         return render_template("auth/change_or_delete.html",
                                form=form,
                                u = current_user)
-
+    #Change user information.
     u = User.query.get(user_id)
     u.name = form.name.data
     u.username = form.username.data

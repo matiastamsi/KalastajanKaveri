@@ -43,11 +43,12 @@ def fish_create():
     if form.noClosedSeason.data:
         closedSeasonStarts = None
         closedSeasonEnds = None
-
+    #Create a new fish.
     f = Fish(form.name.data.lower().strip(),
              minimumCatchSize,
              closedSeasonStarts,
              closedSeasonEnds)
+
     db.session().add(f)
     db.session().commit()
 
@@ -96,6 +97,7 @@ def fish_save(fish_id):
         closedSeasonStarts = None
         closedSeasonEnds = None
 
+    #Change the fish information.
     f = Fish.query.get(fish_id)
     f.name = form.name.data.lower().strip()
     f.minimum_catch_size = minimumCatchSize

@@ -4,7 +4,7 @@
 <h1> Add a new catch </h1>
 <form method="POST" action="{{ url_for('catches_create') }}">
   <div class="form-group">
-    <label for="species">Select a species</label>
+    <label for="species">Select a species (If there is no fish that you are looking for, please <a href="{{ url_for('fish_form') }}">add a new species</a>.)</label>
     <select class="form-control" id="species" name="species">
       {% for fish in fishes %}
         <option>{{ fish.name }}</option>

@@ -18,7 +18,7 @@
 		UNIQUE (name), 
 		UNIQUE (username)
 	)
- 
+
 	CREATE TABLE fish (
 		id INTEGER NOT NULL, 
 		date_created DATETIME, 
@@ -43,8 +43,8 @@
 		private_or_public VARCHAR(144) NOT NULL, 
 		account_id INTEGER, 
 		species_id INTEGER, 
-		fisher VARCHAR(144) NOT NULL, 
 		PRIMARY KEY (id), 
 		FOREIGN KEY(account_id) REFERENCES account (id), 
 		FOREIGN KEY(species_id) REFERENCES fish (id)
 	)
+

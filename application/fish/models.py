@@ -25,9 +25,8 @@ class Fish(Base): #Fish gets id, date_created and date_modified
                     "FROM Fish "
                     "WHERE Fish.name = :name").params(name=name)
         res = db.engine.execute(stmt)
-        for res in res:    #If resultset is not empty
-            return res.id  #return the first id (no more than
-                           #one unique named fish).
+        for res in res:
+            return res.id
 
     #Function to get only day.
     def getDay(self, dateToSplit):
