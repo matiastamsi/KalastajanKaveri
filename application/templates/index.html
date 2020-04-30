@@ -9,17 +9,17 @@
   {% if biggest_catch != None %}
     <h2>The biggest fish raported</h2>
     <p>
-      <li>{{ biggest_catch }}</li>
+      <p>{{ biggest_catch }}</p>
     </p>
     <h2>Catches raported so far</h2>
     <ul>
       {% for catch in species_catched %}
-        <li>{{ catch.name }}: {{ catch.count }}</li>
+        <p>{{ catch.name }}: {{ catch.count }}</p>
       {% endfor %}
     </ul>
   {% endif %}
-  <br></br>
 </div>
+<br></br>
 {% endblock %}
 
 
