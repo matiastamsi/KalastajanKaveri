@@ -1,7 +1,7 @@
 # Käyttöohje
 
 ### Sovelluksen toiminta
-Sovellus on kenen vain tarkasteltavana etusivun, julkisten saalismerkintöjen ja kalalaji-infon osalta. Etusivulla toivotetaan tervetulleeksi käyttämään sovellusta sekä luetellaan kalalajeittain raportoidut saalismerkintöjen määrät.
+Sovellus on kenen vain tarkasteltavana etusivun, julkisten saalismerkintöjen ja kalalaji-infon osalta. Etusivulla toivotetaan tervetulleeksi käyttämään sovellusta, ilmoitetaan sivuston saalisennätys sekä luetellaan kalalajeittain raportoidut saalismerkintöjen määrät.
 
 Saalismerkintöjen listauksessa näkyy julkiset saalismerkinnät ja kalalaji-infosta löytyy tietoja kalalajien rauhoitukseen liittyen.
 
@@ -20,7 +20,7 @@ Rekisteröityminen tapahtuu myös oikeasta yläkulmasta painamalla *Sign up*-nap
 
 Sovelluksen ylälaidassa on erilaisia toimintoihin vieviä otsikoita. Käydään nämä lävitse.
 
-__Front page__ - ohjaa etusivulle, jossa tervetulotoivotus ja listattuna sovellukseen raportoitujen saaliideen määrä kalalajeittain (esimerkiksi *taimen: 43*) ja suuruusjärjestyksessä (eniten napatut ensin).
+__Front page__ - ohjaa etusivulle, jossa tervetulotoivotus. Lisäksi näkyy saalis ennätys (esimerkiksi *taimen, as heavy as 7.2 kg and lucky fisher was Matti*) sekä listattuna on sovellukseen raportoitujen saaliideen määrä kalalajeittain (esimerkiksi *taimen: 43*), jotka ovat suuruusjärjestyksessä (eniten napatut ensin).
 
 __List catches__ - listaa omat sekä julkiset saalismerkinnät. Saalismerkinnöistä näytetään *kalalaji, viehe vai perho, pituus (cm), paino (kg), paikka, kuvaus, lisätty, kalastaja (julkisissa). Kirjautuneelle käyttäjällä näkyy omien saalismerkintöjen yhteydessä *Change or delete*-nappi, josta voi muokata tai poistaa saalismerkinnän.
 
