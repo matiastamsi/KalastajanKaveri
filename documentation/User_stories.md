@@ -2,6 +2,10 @@
 
 Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, kalastuksenvalvoja tms. Voi käyttäjä...
 
+- ... tarkastella etusivulla sivustolle raportoitujen napattujen kalojen määrää (kalalaji kohtaisesti ja järjestetty suurimmasta pienimpään). __Raaka SQL-kysely__.
+
+      SELECT Fish.name, COUNT(Catch.species_id) as count FROM Fish LEFT JOIN Catch ON Fish.id = Catch.species_id GROUP BY Fish.name ORDER BY count DESC
+
 - ... luoda uuden käyttäjätilin.
 
       INSERT INTO account (date_created, date_modified, name, username, password, role) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
@@ -74,5 +78,3 @@ Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, ka
 
       //Edellä mainittuihin saalismerkintöjen hakuihin lisätään perään vain:
       ... ORDER BY catch.weight DESC, catch.length DESC
-
-
