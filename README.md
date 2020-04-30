@@ -27,7 +27,7 @@ kuvaus, lisäyksen päivämäärä sekä tieto siitä, että onko saalismerkint�
 
 - Kalalajin lisäys (muotoa: kalalaji, alamitta, rauhoitusaika alkaa pvm., rauhoitusaika loppuu pvm.).
 - Kalalajien listaaminen.
-- Kalalajin muokkaaminen tai positaminen.
+- Kalalajin muokkaaminen tai poistaminen.
 
 - Rekisteröinti ja kirjautuminen.
 - Käyttäjätilin muokkaaminen tai poistaminen.
