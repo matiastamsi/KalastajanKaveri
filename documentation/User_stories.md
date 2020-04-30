@@ -2,61 +2,77 @@
 
 Oli käyttäjä sitten vapaa-ajan kalastaja, kalastuskilpailun järjestäjä, kalastuksenvalvoja tms. Voi käyttäjä...
 
-- ... luoda uuden käyttäjätilin. :heavy_check_mark:
+- ... luoda uuden käyttäjätilin.
 
-INSERT INTO account (date_created, date_modified, name, username, password, role) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+      INSERT INTO account (date_created, date_modified, name, username, password, role) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
 
-- ... muokata käyttäjätiliään. :heavy_check_mark:
+- ... muokata käyttäjätiliään.
 
-UPDATE account SET date_modified=CURRENT_TIMESTAMP, password=? WHERE account.id = ?
+      UPDATE account SET date_modified=CURRENT_TIMESTAMP, password=? WHERE account.id = ?
 
-- ... poistaa käyttäjätilinsä. :heavy_check_mark:
+- ... poistaa käyttäjätilinsä.
 
-DELETE FROM account WHERE account.id = ?
+      DELETE FROM account WHERE account.id = ?
 
-- ... lisätä saalismerkinnän. :heavy_check_mark:
+- ... lisätä saalismerkinnän.
 
-INSERT INTO catch (date_created, date_modified, lure_or_fly, length, weight, spot, description, private_or_public, account_id, species_id, fisher) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO catch (date_created, date_modified, lure_or_fly, length, weight, spot, description, private_or_public, account_id, species_id, fisher) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 
-- ... muokata saalismerkintäänsä. :heavy_check_mark:
+- ... muokata saalismerkintäänsä.
 
-UPDATE catch SET date_modified=CURRENT_TIMESTAMP, length=?, weight=?, spot=?, description=? WHERE catch.id = ?
+      UPDATE catch SET date_modified=CURRENT_TIMESTAMP, length=?, weight=?, spot=?, description=? WHERE catch.id = ?
 
-- ... poistaa saalismerkintänsä. :heavy_check_mark:
+- ... poistaa saalismerkintänsä.
 
-DELETE FROM catch WHERE catch.id = ?
+      DELETE FROM catch WHERE catch.id = ?
 
-- ... voi listata kaikki omat saaliit. :heavy_check_mark:
+- ... voi listata kaikki omat saaliit (uusin ensin).
 
-SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher 
-FROM catch 
-WHERE catch.account_id = ?
+      SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher FROM catch WHERE catch.account_id = ? ORDER BY catch.date_created DESC
 
-- ... voi listata kaikki julkiset saaliit. :heavy_check_mark:
+- ... voi listata kaikki julkiset saaliit (uusin ensin).
 
-SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher 
-FROM catch 
-WHERE catch.private_or_public = ?
+      SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher FROM catch WHERE catch.private_or_public = ? ORDER BY catch.date_created DESC
 
-- ... tarkistaa listasta kalalajikohtaiset tiedot. :heavy_check_mark:
+- ... tarkistaa listasta kalalajikohtaiset tiedot.
 
-SELECT fish.id AS fish_id, fish.date_created AS fish_date_created, fish.date_modified AS fish_date_modified, fish.name AS fish_name, fish.minimum_catch_size AS fish_minimum_catch_size, fish.closed_season_starts AS fish_closed_season_starts, fish.closed_season_ends AS fish_closed_season_ends 
-FROM fish
+      SELECT fish.id AS fish_id, fish.date_created AS fish_date_created, fish.date_modified AS fish_date_modified, fish.name AS fish_name, fish.minimum_catch_size AS fish_minimum_catch_size, fish.closed_season_starts AS fish_closed_season_starts, fish.closed_season_ends AS fish_closed_season_ends FROM fish
 
-- ... voi lisätä uuden kalalajin, jos sitä ei vielä ole. :heavy_check_mark:
+- ... voi lisätä uuden kalalajin, jos sitä ei vielä ole.
 
-INSERT INTO fish (date_created, date_modified, name, minimum_catch_size, closed_season_starts, closed_season_ends) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+      INSERT INTO fish (date_created, date_modified, name, minimum_catch_size, closed_season_starts, closed_season_ends) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
 
-- ... voi muokata kalalajia, jos tieto virheellistä. :heavy_check_mark:
+- ... voi muokata kalalajia, jos esimerkiksi tieto virheellistä.
 
-UPDATE fish SET date_modified=CURRENT_TIMESTAMP, name=?, minimum_catch_size=? WHERE fish.id = ?
+      UPDATE fish SET date_modified=CURRENT_TIMESTAMP, name=?, minimum_catch_size=? WHERE fish.id = ?
 
-- ... voi poistaa kalalajin. :heavy_check_mark:
+- ... voi poistaa kalalajin.
 
-DELETE FROM fish WHERE fish.id = ?
+      DELETE FROM fish WHERE fish.id = ?
 
-- ... voi katsella, mistä on saatu tiettyjä kaloja.
-- ... voi katsella, milloin on saatu kalaa.
-- ... voi etsiä ennätyksiä.
+- ... voi hakea saalismerkintöjä kalalajin perusteella.
+
+       //Etsii ensin kalalajin id:n nimen perusteella. 
+       SELECT fish.id AS fish_id, fish.date_created AS fish_date_created, fish.date_modified AS fish_date_modified, fish.name AS fish_name, fish.minimum_catch_size AS fish_minimum_catch_size, fish.closed_season_starts AS fish_closed_season_starts, fish.closed_season_ends AS fish_closed_season_ends FROM fish WHERE fish.name = ?
+
+      //Suorittaa seuraavan kyselyn kun kalalajin id on tiedossa.
+      SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher FROM catch WHERE catch.species_id = ?
+      
+- ... voi hakea saalismerkintöjä kalapaikan perusteella.
+
+      SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher FROM catch WHERE catch.spot = ?
+      
+- ... voi hakea saalismerkintöjä kalapaikan ja kalalajin perusteella.
+
+      //Etsii ensin kalalajin id:n nimen perusteella.
+      SELECT fish.id AS fish_id, fish.date_created AS fish_date_created, fish.date_modified AS fish_date_modified, fish.name AS fish_name, fish.minimum_catch_size AS fish_minimum_catch_size, fish.closed_season_starts AS fish_closed_season_starts, fish.closed_season_ends AS fish_closed_season_ends FROM fish WHERE fish.name = ?
+
+      //Suorittaa seuraavan kyselyn kun kalalajin id on tiedossa.
+      SELECT catch.id AS catch_id, catch.date_created AS catch_date_created, catch.date_modified AS catch_date_modified, catch.lure_or_fly AS catch_lure_or_fly, catch.length AS catch_length, catch.weight AS catch_weight, catch.spot AS catch_spot, catch.description AS catch_description, catch.private_or_public AS catch_private_or_public, catch.account_id AS catch_account_id, catch.species_id AS catch_species_id, catch.fisher AS catch_fisher FROM catch WHERE catch.species_id = ? AND catch.spot = ?
+
+- ... voi hakea saalismerkintöjä kalan koon perusteella. 
+
+      //Edellä mainittuihin saalismerkintöjen hakuihin lisätään perään vain:
+      ... ORDER BY catch.weight DESC, catch.length DESC
 
 
