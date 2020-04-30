@@ -1,6 +1,6 @@
-# Fisher's best friend
+# Fisher's Best Friend
 
-__Fisher's best friend__:issä jokainen kalastaja voi pitää kirjaa omista saaleistaan
+__Fisher's Best Friend__:issä jokainen kalastaja voi pitää kirjaa omista saaleistaan
 sekä nähdä muiden jakamia saalismerkintöjä, jos he suinkaan haluavat paljastaa niitä!
 Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
 
