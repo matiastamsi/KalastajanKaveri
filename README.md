@@ -1,5 +1,7 @@
 # Fisher's Best Friend
 
+*Huom. Kyseessä on harjoitustyö Helsingin yliopiston Tietokantasovellus-kurssilta. Tätä repositoriota ei aktiivisesti päivitetä eikä toimivuutta taata.*
+
 __Fisher's Best Friend__:issä jokainen kalastaja voi pitää kirjaa omista saaleistaan
 sekä nähdä muiden jakamia saalismerkintöjä, jos he suinkaan haluavat paljastaa niitä!
 Toisaalta omien vonkaleiden esittely on varmasti jokaisen kalastajan mielessä.
